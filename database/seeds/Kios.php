@@ -13,13 +13,13 @@ class Kios extends Seeder
     {
         DB::table('kios')->insert([
             'nama_kios' => 'UD Widda Jaya',
-            'pemilik' => 'Sukisman',
             'alamat' => 'Dusun Bringin Sari Desa Jati Mulyo Kecamatan Jenggawah',
-            ]);
-        DB::table('kios')->insert([
-            'nama_kios' => 'UD Tani Harapan',
-            'pemilik' => 'Rahmad Basuki',
-            'alamat' => 'Desa Wonojati Kecamatan Jenggawah',
+            'pemilik' => 'Sukisman',
+            'kecamatan' => 1,
+            'desa' => 'Klompangan',
+            'no_telpon' => '081249033317',
+            'kode' => 'RT000002983',
+            'spjb' => '023',
             ]);
     }
 }

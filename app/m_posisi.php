@@ -13,6 +13,6 @@ class m_posisi extends Model
     ];
     
     public function datauser(){
-        return $this->hasMany('App\User', 'id');
+        return $this->hasMany('App\User', 'id_posisi' , 'posisi');
     }
 }

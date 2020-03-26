@@ -19,7 +19,7 @@
     <div class="col-lg-12">
         <div class="main-card mb-3 card">
             <div class="card-body">
-                <h5 class="card-title">{{$kio}}</h5>
+                <h5 class="card-title">{{$kecamatan->daerah->kecamatan}}</h5>
                 <table id="dt" class="mb-0 table table-hover" id="usertable">
                     <thead>
                         <tr>
@@ -38,7 +38,7 @@
                             <td>{{$kios->nama_kios}}</td>
                             <td>{{$kios->pemilik}}</td>
                             <td>{{$kios->alamat}}</td>
-                            <td>{{$kios->kecamatan}}</td>
+                            <td>{{$kios->daerah->kecamatan}}</td>
                             <td>{{$kios->desa}}</td>
                             <td>{{$kios->no_telpon}}</td>
                             <td>

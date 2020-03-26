@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateKecamatan extends Migration
+class CreateUrl extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,13 @@ class CreateKecamatan extends Migration
      */
     public function up()
     {
-        Schema::create('kecamatan', function (Blueprint $table) {
-            $table->bigIncrements('id_kecamatan');
-            $table->string('kecamatan');
+        Schema::create('url', function (Blueprint $table) {
+            $table->bigIncrements('id_url');
+            $table->string('facebook');
+            $table->string('instagram');
+            $table->string('twitter');
+            $table->string('wa');
+            $table->string('no_perusahaan');
             $table->timestamps();
         });
     }
@@ -27,6 +31,6 @@ class CreateKecamatan extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('kecamatan');
+        Schema::dropIfExists('url');
     }
 }

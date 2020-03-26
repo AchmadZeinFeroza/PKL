@@ -15,11 +15,13 @@ class CreateRegristasi extends Migration
     {
         Schema::create('regristasi', function (Blueprint $table) {
             $table->bigIncrements('id_regristasi');
+            $table->unsignedBigInteger('kecamatan');
+            $table->foreign('kecamatan')->references('id_kecamatan')->on('kecamatan')->onUpdate('cascade')->onDelete('cascade');
             $table->string('nama_kios');
             $table->string('pemilik');
             $table->string('email');
+            $table->string('desa');
             $table->string('alamat');
-            $table->string('kecamatan');
             $table->string('no_telpon');
             $table->string('ktp');
             $table->string('siup');

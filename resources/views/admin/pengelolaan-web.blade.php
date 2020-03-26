@@ -41,6 +41,11 @@
             <span>Content</span>
         </a>
     </li>
+    <li class="nav-item">
+        <a role="tab" class="nav-link" id="tab-2" data-toggle="tab" href="#tab-content-2">
+            <span>URL Web</span>
+        </a>
+    </li>
 </ul>
 <div class="tab-content">
     <div class="tab-pane tabs-animation fade show active" id="tab-content-0" role="tabpanel">
@@ -68,7 +73,7 @@
                             <div class="position-relative form-group"><label for="exampleFile" class="">Foto 5</label><input name="foto_5"  type="file" class="form-control-file">
                                 <small class="form-text text-muted">Format JPEG, JPG, PNG </small>
                             </div>
-                            <button class="mt-1 btn btn-primary">Submit</button>
+                            <button class="mt-1 btn btn-alternate">Submit</button>
                         </form>
                     </div>
                 </div>
@@ -233,6 +238,27 @@
             </div>
         </div>
 
+    </div>
+    <div class="tab-pane tabs-animation fade" id="tab-content-2" role="tabpanel">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="main-card mb-3 card">
+                    <div class="card-body"><h5 class="card-title">URL web</h5>
+                        @foreach ($url as $link)
+                        <form action="{{route('url' , $link->id_url)}}" method="POST" enctype="multipart/form-data">
+                            {{csrf_field()}}{{method_field('PUT')}}
+                        <div class="position-relative form-group"><label for="exampleText">Facebook</label> <input name="facebook" id="facebook" placeholder="Masukkan URL Facebook" type="text" class="form-control" value="{{$link->facebook}}"></div>
+                            <div class="position-relative form-group"><label for="exampleText">Instagram</label> <input name="instagram" id="instagram" placeholder="Masukkan URL Instagram" type="text" class="form-control" value="{{$link->instagram}}"></div>
+                            <div class="position-relative form-group"><label for="exampleText">Twitter</label> <input name="twitter" id="twitter" placeholder="Masukkan URL Twitter" type="text" class="form-control" value="{{$link->twitter}}"></div>
+                            <div class="position-relative form-group"><label for="exampleText">Whatsapp</label> <input name="wa" id="wa" placeholder="Masukkan URL Whatsapp" type="text" class="form-control" value="{{$link->wa}}"></div>
+                            <div class="position-relative form-group"><label for="exampleText">Nomor Telepon Perusahaan</label> <input name="no_perusahaan" id="no_perusahaan" placeholder="Masukkan Nomor Telepom" type="text" class="form-control" value="{{$link->no_perusahaan}}"></div>
+                            @endforeach
+                            <button class="mt-1 btn btn-alternate" type="submit">Simpan</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 @endsection

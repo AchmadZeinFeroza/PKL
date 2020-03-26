@@ -40,7 +40,7 @@
                   <div class="widget-subheading">Orang Umum</div>
               </div>
               <div class="widget-content-right">
-                  <div class="widget-numbers text-white"><span>1</span></div>
+                <div class="widget-numbers text-white"><span>{{$pesan->count()}}</span></div>
               </div>
           </div>
       </div>

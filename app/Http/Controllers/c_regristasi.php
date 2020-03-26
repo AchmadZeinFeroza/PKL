@@ -51,10 +51,22 @@ class c_regristasi extends Controller
 
     public function postRegristasi(Request $request){
         $data = new m_regristasi;
+        $request->validate([
+            'nama_kios' => 'required',
+            'pemilik' => 'required',
+            'email' => 'required',
+            'judul' => 'required',
+            'alamat' => 'required',
+            'avatar' => 'required|image|mimes:jpeg,png,gif,webp',
+            'ktp' => 'required|image|mimes:jpeg,png,gif,webp,pdf',
+            'tdp' => 'required|image|mimes:jpeg,png,gif,webp,pdf',
+            'siup' => 'required|image|mimes:jpeg,png,gif,webp,pdf'
+        ]);
         $data->nama_kios = $request['nama_kios'];
         $data->pemilik = $request['pemilik'];
         $data->alamat = $request['alamat'];
         $data->no_telpon = $request['no_telpon'];
+        $data->desa = $request['desa'];
         $data->kecamatan = $request['kecamatan'];
         $data->email = $request['email'];
         if($request->hasFile('ktp')){
@@ -73,71 +85,6 @@ class c_regristasi extends Controller
         Alert::success('Data Kios Berhasil Dikirim', 'Success');
         $data = m_web::get();
         $users = User::get();
-        return view('index' , compact('data' , 'users'));
-    }
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        return redirect('');
     }
 }

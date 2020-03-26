@@ -38,30 +38,40 @@
                     @if($user->id % 2 == 0)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
                     <tr>
                         <td class="px-py-5 d-flex justify-content-end mr-5">
-                            <img
-                                src="{{ $user->getAvatar() }}" class="rounded-circle " width="150px"></td>
+                            <img src="{{ $user->getAvatar() }}" class="rounded-circle " width="150px">
+                        </td>
                         <td>
                             <h5>{{ $user->name }}</h5>
-                            <p>{{ $user->role }}</p>
+                            <p>{{ $user->posisi->posisi }}</p>
                             <button  type="button" class="mb-2 mr-2 btn btn-alternate button-detail"
                             data-toggle="modal" data-target="#detail-profil"  data-id='{{ $user->id}}'>
                                 Detail
                             </button>
+                            <button  type="button" class="mb-2 mr-2 btn btn-danger"
+                            data-toggle="modal" data-target="#hapus-profil{{ $user->id }}">
+                                Hapus
+                            </button>
                         </td>
 
                     </tr>
-                    @elseif($user->id % 2 == 1)
+                    @endif
+                    @if($user->id % 2 == 1)
                     <tr>
                         <td class="text-right px-5">
                             <h5>{{ $user->name }}</h5>
-                            <p>{{ $user->role }}</p>
+                            <p>{{ $user->posisi->posisi }}</p>
                             <button  type="button" class="mb-2 mr-2 btn btn-alternate button-detail"
                             data-toggle="modal" data-target="#detail-profil"  data-id='{{ $user->id}}' >
                                 Detail
                             </button>
+                            <button  type="button" class="mb-2 mr-2 btn btn-danger"
+                            data-toggle="modal" data-target="#hapus-profil{{ $user->id }}">
+                                Hapus
+                            </button>
                         </td>
                         <td class=" px-py-5 ml-5 d-flex justify-content-start "><img
-                                src="{{ $user->getAvatar()  }}" class="rounded-circle" width="150px"></td>
+                                src="{{ $user->getAvatar()  }}" class="rounded-circle" width="150px">
+                        </td>
 
                     </tr>
                     @endif
@@ -112,6 +122,15 @@
                         <input name="alamat" id="alamat" placeholder="Masukkan alamat" type="text" class="form-control">
                     </div>
                     <div class="position-relative form-group">
+                        <label for="role">Posisi</label>
+                        <select class="custom-select form-control" id="inputGroupSelect04" name="role">
+                            <option selected class="text-dark">-- Pilih Posisi --</option>
+                            <option value="1" class="text-dark">Manager</option>
+                            <option value="2" class="text-dark">Bendahara</option>
+                            <option value="3" class="text-dark">Kepala Gudang</option>
+                        </select>
+                    </div>
+                    <div class="position-relative form-group">
                         <label for="nik">NIK</label>
                         <input name="nik" id="nik" placeholder="Masukkan nik" type="number" class="form-control">
                     </div>
@@ -128,7 +147,6 @@
                         <input name="avatar" id="avatar" type="file" class="form-control-file">
                         <small class="form-text text-muted">Pastikan Semua data terisi dengan benar</small>
                     </div>
-                    <input type="hidden" name="role" value="karyawan">
             </div>
             <div class="modal-footer">
                 <button type="submit" class="btn btn-primary">Tambah</button>
@@ -174,7 +192,13 @@
                             <div class="form-group row mx-auto ">
                                 <label for="role" class="col-sm-4 col-form-label text-right">Posisi</label>
                                 <div class="col-sm-8">
-                                  <input type="text" name="role" role="role" id="role"  class="form-control-plaintext text-left data-role" value="">
+                                        <select class="custom-select form-control" id="inputGroupSelect04" name="role">
+                                            <option selected class="text-dark data-role">-- Pilih Posisi --</option>
+                                            <option value="1" class="text-dark">Manager</option>
+                                            <option value="2" class="text-dark">Bendahara</option>
+                                            <option value="3" class="text-dark">Kepala Gudang</option>
+                                        </select>
+                                        <small>Kode 1 = Manager , 2 = Bendahara , 3 = Kepala Gudang</small>
                                 </div>
                               </div>
                             <div class="form-group row mx-auto ">
@@ -233,6 +257,37 @@
 </div>
 {{-- End Modal Detail Profil --}}
 
+
+{{-- modal hapus user --}}
+@foreach ($data as $pengguna)
+<div class="modal fade" id="hapus-profil{{ $pengguna->id }}" tabindex="-1" role="dialog"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Hapus Admin</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                     Yakin Ingin Menghapus user {{$pengguna->name}} ini ?
+            <div class="modal-footer">
+                <form action="{{ route('hapus-admin' , $pengguna->id) }}" class="mr-2" method="POST">
+                    {{csrf_field()}}{{method_field('DELETE')}}
+                    <button type="submit" class="btn btn-danger">Hapus</button>
+                </form>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+@endforeach
+
+{{-- end modal hapus user --}}
+
+
   <script>
 
     $('.button-detail').click(function () {
@@ -261,7 +316,7 @@
           $('.data-name').val(data.name);
           $('.data-id').val(data.id);
           $('.data-email').val(data.email);
-          $('.data-role').val(data.role);
+          $('.data-role').html(data.role);
           $('.data-alamat').val(data.alamat);
           $('.data-facebook').val(data.facebook);
           $('.data-wa').val(data.wa);

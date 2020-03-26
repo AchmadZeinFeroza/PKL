@@ -420,7 +420,7 @@
                                     Dashboard
                                 </a>
                             </li>
-                            @if(auth()->user()->role == "manager")
+                            @if(auth()->user()->role == "1")
                             <li>
                                 <a href="{{ route('user-admin') }}">
                                     <i class="metismenu-icon pe-7s-user"></i>
@@ -462,18 +462,14 @@
                                 </a>
                                
                             </li>
+                            @if(auth()->user()->role == "1" || auth()->user()->role == "3")
                             <li>
                                 <a href="{{ route('pengelolaan-web') }}">
                                     <i class="metismenu-icon pe-7s-mouse">
                                     </i>Pengelolaan Web
                                 </a>
                             </li>
-                            <li>
-                                <a href="forms-layouts.html">
-                                    <i class="metismenu-icon pe-7s-calculator">
-                                    </i>Omset
-                                </a>
-                            </li>
+                            @endif
                             <li>
                                 <a href="{{ route('file.index')}}">
                                     <i class="metismenu-icon pe-7s-pendrive">

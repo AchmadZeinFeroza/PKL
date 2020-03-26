@@ -20,7 +20,9 @@ class data_kios implements ToCollection
                 'pemilik' => $row[2],
                 'alamat' => $row[3],
                 'desa' => $row[4],
-                'no_telpon' => $row[6]
+                'no_telpon' => $row[5],
+                'kode' => $row[6],
+                'spjb' => $row[7]
                 
             ]);
         }

@@ -11,4 +11,8 @@ class m_penolakan extends Model
     protected $fillable = [
         'nama_kios','pemilik','alamat','kecamatan','email' ,'no_telpon' , 'ktp' , 'tdp' , 'siup'
     ];
+
+    public function daerah(){
+        return $this->belongsTo('App\m_kecamatan', 'kecamatan' ,'id_kecamatan');
+    }
 }

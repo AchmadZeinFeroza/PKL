@@ -15,9 +15,10 @@ class CreateKiosDitolak extends Migration
     {
         Schema::create('kios_ditolak', function (Blueprint $table) {
             $table->bigIncrements('id_penolakan');
+            $table->unsignedBigInteger('kecamatan');
+            $table->foreign('kecamatan')->references('id_kecamatan')->on('kecamatan')->onUpdate('cascade')->onDelete('cascade');
             $table->string('pemilik');
             $table->string('nama_kios');
-            $table->string('kecamatan');
             $table->string('email');
             $table->string('alamat');
             $table->string('alasan');

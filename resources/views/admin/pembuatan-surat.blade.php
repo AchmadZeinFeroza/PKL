@@ -18,9 +18,20 @@
         </div>
     </div>
     <div class="col-lg-12">
+        @if ($errors->any())
+        <div class="alert alert-danger alert-dismissible fade show">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <ul>
+            @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+            @endforeach
+          </ul>
+        </div>
+        @endif
         <div class="main-card mb-3 card">
             <div class="card-body">
-                
                 <div class="app-header-left">
                     <div class="search-wrapper">
                         <div class="input-holder">
@@ -33,19 +44,16 @@
                   <table class="table table-hover">
                     <thead class="thead-light">
                       <tr>
-                        <th scope="col">No</th>
+                        <th scope="col">No SPJB</th>
                         <th scope="col">Nama Kios</th>
                         <th scope="col">SPJB</th>
                         <th scope="col">Penunjukan</th>
                       </tr>
                     </thead>
                     <tbody id="myTable">
-                        @php
-                         $i = 1;   
-                        @endphp
                     @foreach ($data as $kios)    
                     <tr>
-                      <td scope="row">{{$i}}</td>
+                      <td scope="row">{{$kios->spjb}}</td>
                       <td>{{$kios->nama_kios}}</td>
                       <td>
                         <div class="btn-group">
@@ -58,24 +66,19 @@
                     </td>
                     <td>
                         <div class="btn-group">
-                            <form action="{{route('penunjukan' , $kios->id_kios)}}" method="get">
-                                {{csrf_field()}}
+                            <form action="{{route('penunjukan' , $kios->id_kios)}}" method="post">
+                                {{csrf_field()}}{{method_field('PATCH')}}
+                                <input type="date" class="form-control" name="tanggal">
                                 <button type="submit" class="btn btn-rounded btn-secondary"> Cetak</button>
                             </form>
                         </div>
                     </td>
                     </tr>
-                    @php
-                        $i++;
-                    @endphp
                     @endforeach
                     </tbody>
                 </table>
                 {{$data->links()}}	
                 </table>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                    Tambah
-                </button>
             </div>
             @endsection
               <!-- Modal Tambah Kios -->

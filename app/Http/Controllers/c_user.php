@@ -15,6 +15,15 @@ class c_user extends Controller
     }
     public function store(Request $request){
         $profil = new User;
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'judul' => 'required',
+            'alamat' => 'required',
+            'nik' => 'numeric|required',
+            'wa' => 'numeric|min:8|max:13',  
+            'avatar' => 'required|image|mimes:jpeg,png,gif,webp'
+        ]);
         $profil->role = $request['role'];
         $profil->name = $request['name'];
         $profil->email = $request['email'];
@@ -33,7 +42,7 @@ class c_user extends Controller
         $profil->save();
         Alert::success('Data User Berhasil Di Tambah', 'Success');
         $data = User::get();
-        return view('admin/daftar-admin',compact('data'));
+        return redirect('user');
     }
 
     public function showdata($id)
@@ -45,6 +54,15 @@ class c_user extends Controller
     public function update(Request $request , $id)
     {
         $data = User::find($id);
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'judul' => 'required',
+            'alamat' => 'required',
+            'nik' => 'numeric|required',
+            'wa' => 'numeric|min:8|max:13',
+            'avatar' => 'required|image|mimes:jpeg,png,gif,webp'
+        ]);
         $data->role = $request['role'];
         $data->name = $request['name'];
         $data->email = $request['email'];
@@ -60,8 +78,17 @@ class c_user extends Controller
         $data->save();
         Alert::success('Data User Berhasil Di Ubah', 'Success');
         $data = User::get();
-        return view('admin/daftar-admin' , compact('data'));
+        return redirect('user');
 
+    }
+
+    public function destroy($id)
+    {
+        $data = User::find($id);
+        $data->delete();
+        Alert::success('Data User Berhasil Di Hapus', 'Success');
+        $data = User::get();
+        return redirect('user');
     }
 
 }

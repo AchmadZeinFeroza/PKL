@@ -43,6 +43,7 @@
                                     <th>SIUP</th>
                                     <th>Tanda Daftar Perusahaan</th>
                                     <th>Nomor telpon</th>
+                                    <th>Desa</th>
                                     <th>Kecamatan</th>
                                     <th>Email</th>
                                     <th>Action</th>
@@ -61,7 +62,8 @@
                                             <td><a class="btn btn-rounded detail-siup" data-toggle="modal" data-target="#detail-siup"  data-id="{{ $kios->id_regristasi}}"><i class="pe-7s-home"> Lihat Berkas</i></a></td>
                                             <td><a class="btn btn-rounded detail-tdp" data-toggle="modal" data-target="#detail-tdp"  data-id="{{ $kios->id_regristasi}}"><i class="pe-7s-copy-file"> Lihat Berkas</i></a></td>
                                             <td>{{ $kios->no_telpon }} <input type="hidden" value="{{$kios->no_telpon}}" name="no_telpon"></td>
-                                            <td>{{ $kios->kecamatan }} <input type="hidden" value="{{$kios->kecamatan}}" name="kecamatan"></td>
+                                            <td>{{ $kios->desa }} <input type="hidden" value="{{$kios->desa}}" name="desa"></td>
+                                            <td>{{ $kios->daerah->kecamatan }} <input type="hidden" value="{{$kios->kecamatan}}" name="kecamatan"></td>
                                             <td>{{ $kios->email }}</td>
                                             <td>
                                                 <div class="btn-group">
@@ -129,7 +131,7 @@
                                         <td>{{ $kios->ktp }}</td>
                                         <td>{{ $kios->siup }}</td>
                                         <td>{{ $kios->tdp }}</td>
-                                        <td>{{ $kios->kecamatan }}</td>
+                                        <td>{{ $kios->daerah->kecamatan }}</td>
                                         <td>{{ $kios->email }}</td>
                                         <td>{{ $kios->alasan }}</td>
                                       </tr>

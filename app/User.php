@@ -39,7 +39,7 @@ class User extends Authenticatable
     ];
     
     public function posisi(){
-        return $this->belongsTo('App\m_posisi','id_posisi');
+        return $this->belongsTo('App\m_posisi', 'role' ,'id_posisi');
     }
 
     public function getAvatar(){

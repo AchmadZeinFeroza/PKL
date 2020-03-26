@@ -32,13 +32,16 @@ class c_kios extends Controller
 
     public function import(Request $request){
         Excel::import(new data_kios , $request->file('kios'));
+        Alert::success('Kios Berhasil Di Tambah', 'Success');
+        $data = m_kios::get();
+        return redirect('kios');
     }
 
     public function getkecamatan(){
-        $j = m_kios::where('kecamatan' , 'JENGGAWAH');
-        $m = m_kios::where('kecamatan' , 'MUMBULSARI');
-        $a = m_kios::where('kecamatan' , 'AJUNG');
-        $s = m_kios::where('kecamatan' , 'SILO');
+        $j = m_kios::where('kecamatan' , 2);
+        $m = m_kios::where('kecamatan' , 3);
+        $a = m_kios::where('kecamatan' , 1);
+        $s = m_kios::where('kecamatan' , 4);
         return view('admin/daftar-kecamatan',  compact('j','m','a','s'));
     }
 
@@ -46,11 +49,36 @@ class c_kios extends Controller
     {
         $data = m_kios::find($id);
         $data->delete();
-        // $data->save();
         Alert::success('Data Berhasil di Hapus', 'Success');
         $data = m_kios::get();
-        return view('admin/daftar-kios', compact('data'));
+        return redirect('kios');
 
+    }
+
+    public function tambah(Request $request)
+    {
+        $data = new m_kios;
+        $request->validate([
+            'pemilik' => 'required',
+            'nama_kios' => 'required',
+            'alamat' => 'required',
+            'kecamatan' => 'required',
+            'desa' => 'required',
+            'no_telpon' => 'required',
+            'kode' => 'numeric|required',
+            'spjb' => 'required',
+        ]);
+        $data->pemilik = $request['pemilik'];
+        $data->nama_kios = $request['nama_kios'];
+        $data->alamat = $request['alamat'];
+        $data->kecamatan = $request['kecamatan'];
+        $data->desa = $request['desa'];
+        $data->no_telpon = $request['no_telpon'];
+        $data->kode = $request['kode'];
+        $data->spjb = $request['spjb'];
+        $data->save();
+        Alert::success('Kios Berhasil Di Tambah', 'Success');
+        return redirect('kios');
     }
 
     public function tampilkan($letter)
@@ -58,22 +86,7 @@ class c_kios extends Controller
         $data = m_kios::where('kecamatan' , $letter);
         return view('admin/detail-kecamatan' , compact('data')); 
     }
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $id = $request['id_regristasi'];
@@ -83,6 +96,7 @@ class c_kios extends Controller
         $kios->alamat = $request['alamat'];
         $kios->kecamatan = $request['kecamatan'];
         $kios->no_telpon = $request['no_telpon'];
+        $kios->desa = $request['desa'];
         $kios->save();
         $regristasi = m_regristasi::where('id_regristasi', $id)->first();
         $regristasi->delete();
@@ -125,8 +139,8 @@ class c_kios extends Controller
     public function show($kio)
     {
         $data = m_kios::where('kecamatan' , $kio)->get();
-        $kecamatan = $kio;
-        return view('admin/detail-kecamatan' , compact('data' , 'kio'));
+        $kecamatan = $data->first();
+        return view('admin/detail-kecamatan' , compact('data' , 'kecamatan'));
     }
 
     /**
@@ -147,20 +161,30 @@ class c_kios extends Controller
      * @param  \App\m_kios  $m_kios
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, m_kios $m_kios)
+    public function update(Request $request, $id)
     {
-        //
-    }
+        $data = m_kios::find($id);
+        $request->validate([
+            'pemilik' => 'required',
+            'nama_kios' => 'required',
+            'alamat' => 'required',
+            'kecamatan' => 'required',
+            'desa' => 'required',
+            'no_telpon' => 'required',
+            'kode' => 'numeric|required',
+            'spjb' => 'required',
+        ]);
+        $data->pemilik = $request['pemilik'];
+        $data->nama_kios = $request['nama_kios'];
+        $data->alamat = $request['alamat'];
+        $data->kecamatan = $request['kecamatan'];
+        $data->desa = $request['desa'];
+        $data->no_telpon = $request['no_telpon'];
+        $data->kode = $request['kode'];
+        $data->spjb = $request['spjb'];
+        $data->save();
+        Alert::success('Kios Berhasil Di Ubah', 'Success');
+        return redirect('kios');
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\m_kios  $m_kios
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(m_kios $m_kios)
-    {
-        $data = m_kios::get();
     }
-
 }

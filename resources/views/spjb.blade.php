@@ -107,10 +107,10 @@
         <hr style="margin-top: 25px;">
         <div class="header">
             <div class="judul2">
-                <p class="font-content"> Nomor : 69/PPI/Sub Cab-Jbr/SPJB/PKG-Jbr/{{$tanggal[3]}}/{{$tgl_angka[0]}}</p>
+                <p class="font-content"> Nomor : {{$surat->spjb}}/PPI/Sub Cab-Jbr/SPJB/PKG-Jbr/{{$tanggal[3]}}/{{$tgl_angka[0]}}</p>
             </div>
         </div>
-        <p class="font-content">Pada hari ini, Jumat, tanggal {{$tanggal[2]}}, bulan {{$tanggal[1]}}, tahun dua ribu Sembilan belas
+        <p class="font-content">Pada hari ini, Jumat, tanggal {{$tanggal[2]}}, bulan {{$tanggal[1]}}, tahun dua ribu {{$tanggal[4]}}
             ({{$tgl}}), kami yang bertanda tangan di bawah ini :
         </p>
         <div class="inline" style="margin-top:15px;">

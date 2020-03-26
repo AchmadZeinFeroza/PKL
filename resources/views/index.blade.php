@@ -83,24 +83,26 @@
           <li class="nav-item">
             <a class="nav-link" href="#pertanyaan">Pertanyaan ?</a>
           </li>
+          @foreach ($url as $link)              
           <li class="nav-item">
-            <a class="nav-link" rel="tooltip" title="Follow us on Twitter" data-placement="bottom" href="https://twitter.com/CreativeTim" target="_blank">
+            <a class="nav-link" rel="tooltip" title="Follow us on Twitter" data-placement="bottom" href="{{$link->twitter}}" target="_blank">
               <i class="fab fa-twitter"></i>
               <p class="d-lg-none d-xl-none">Twitter</p>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" rel="tooltip" title="Like us on Facebook" data-placement="bottom" href="https://www.facebook.com/achmad.feroza" target="_blank">
+            <a class="nav-link" rel="tooltip" title="Like us on Facebook" data-placement="bottom" href="{{$link->facebook}}" target="_blank">
               <i class="fab fa-facebook-square"></i>
               <p class="d-lg-none d-xl-none">Facebook</p>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" rel="tooltip" title="Follow us on Instagram" data-placement="bottom" href="https://www.instagram.com/achmadferoza/" target="_blank">
+            <a class="nav-link" rel="tooltip" title="Follow us on Instagram" data-placement="bottom" href="{{$link->instagram}}" target="_blank">
               <i class="fab fa-instagram"></i>
               <p class="d-lg-none d-xl-none">Instagram</p>
             </a>
           </li>
+          @endforeach
         </ul>
       </div>
     </div>
@@ -204,21 +206,25 @@
               <div class="team-player">
                 <img src="{{ $user->getAvatar() }}" alt="Thumbnail Image" class="rounded-circle img-fluid img-raised">
                 <h4 class="title">{{$user->name}}</h4>
-                  @if( $user->role === "manager")
+                  @if( $user->role === 1)
                 <p class="category text-primary">Manager</p>
                 <p class="description">You can write here details about one of your team members. You can give more details about what they do. Feel free to add some
                   <a href="#">links</a> for people to be able to follow them outside the site.</p>
-                <a href="#pablo" class="btn btn-primary btn-icon btn-round"><i class="fab fa-phone"></i></a>
-                <a href="#pablo" class="btn btn-primary btn-icon btn-round"><i class="fab fa-instagram"></i></a>
-                <a href="#pablo" class="btn btn-primary btn-icon btn-round"><i class="fab fa-facebook-square"></i></a>
-                  @else
-                  <p class="category text-primary">Karyawan</p>
+                <a href="#pablo" class="btn btn-primary btn-icon btn-round" rel="tooltip" title="{{$user->wa}}"><i class="fab fa-phone"></i></a>
+                <a href="{{$user->facebook}}" class="btn btn-primary btn-icon btn-round"><i class="fab fa-facebook-square"></i></a>
+                  @elseif ( $user->role === 2)
+                  <p class="category text-primary">Bendahara</p>
                   <p class="description">You can write here details about one of your team members. You can give more details about what they do. Feel free to add some
                     <a href="#">links</a> for people to be able to follow them outside the site.</p>
-                  <a href="#pablo" class="btn btn-primary btn-icon btn-round"><i class="fab fa-phone"></i></a>
-                  <a href="#pablo" class="btn btn-primary btn-icon btn-round"><i class="fab fa-instagram"></i></a>
-                  <a href="#pablo" class="btn btn-primary btn-icon btn-round"><i class="fab fa-facebook-square"></i></a>
-                    @endif
+                    <a href="#pablo" class="btn btn-primary btn-icon btn-round" rel="tooltip" title="{{$user->wa}}"><i class="fab fa-phone"></i></a>
+                    <a href="{{$user->facebook}}" class="btn btn-primary btn-icon btn-round"><i class="fab fa-facebook-square"></i></a>
+                  @else 
+                  <p class="category text-primary">Kepala Gudang</p>
+                  <p class="description">You can write here details about one of your team members. You can give more details about what they do. Feel free to add some
+                    <a href="#">links</a> for people to be able to follow them outside the site.</p>
+                    <a href="#pablo" class="btn btn-primary btn-icon btn-round" rel="tooltip" title="{{$user->wa}}"><i class="fab fa-phone"></i></a>
+                    <a href="{{$user->facebook}}" class="btn btn-primary btn-icon btn-round"><i class="fab fa-facebook-square"></i></a>
+                  @endif
                 </div>
             </div>                        
             @endforeach
@@ -294,6 +300,13 @@
             </li>
           </ul>
         </nav>
+        
+        <div class="copyright" id="tentang">
+          @foreach ($url as $link)
+          Nomor Telepon : {{$link->no_perusahaan}} , Whatsapp : {{$link->wa}}
+          @endforeach
+        </div>
+        <br>
         <div class="copyright" id="copyright">
           &copy;
           <script>

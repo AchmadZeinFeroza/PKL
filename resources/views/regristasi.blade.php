@@ -70,6 +70,14 @@
                         <i class="now-ui-icons location_pin"></i>
                       </span>
                     </div>
+                    <input type="text" name="desa" class="form-control" placeholder="Desa">
+                  </div>
+                  <div class="input-group no-border">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <i class="now-ui-icons location_pin"></i>
+                      </span>
+                    </div>
                     <input type="text" name="alamat" class="form-control" placeholder="Alamat">
                   </div>
                   <div class="input-group no-border">
@@ -80,10 +88,10 @@
                     </div>
                     <select class="custom-select form-control" id="inputGroupSelect04" name="kecamatan">
                         <option selected class="text-dark">Kecamatan</option>
-                        <option value="AJUNG" class="text-dark">Ajung</option>
-                        <option value="JENGGAWAH" class="text-dark">Jenggawah</option>
-                        <option value="MUMBULSARI" class="text-dark">Mumbulsari</option>
-                        <option value="SILO" class="text-dark">Silo</option>
+                        <option value="1" class="text-dark">Ajung</option>
+                        <option value="2" class="text-dark">Jenggawah</option>
+                        <option value="3" class="text-dark">Mumbulsari</option>
+                        <option value="4" class="text-dark">Silo</option>
                       </select>
                   </div>
                   <div class="input-group no-border">
