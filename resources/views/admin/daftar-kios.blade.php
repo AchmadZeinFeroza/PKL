@@ -38,11 +38,14 @@
                             <th>Nama Kios</th>
                             <th>Pemilik</th>
                             <th>Alamat</th>
-                            <th>Kecamatan</th>
                             <th>Desa</th>
+                            <th>Kecamatan</th>
                             <th>No Telpon</th>
                             <th>Kode Pengecer</th>
+                            <th>No SPJB</th>
+                            @if(auth()->user()->role == "1")
                             <th>Action</th>
+                            @endif
                         </tr>
                     </thead>
                     <tbody>
@@ -51,10 +54,12 @@
                             <td>{{$kios->nama_kios}}</td>
                             <td>{{$kios->pemilik}}</td>
                             <td>{{$kios->alamat}}</td>
-                            <td>{{$kios->daerah->kecamatan}}</td>
                             <td>{{$kios->desa}}</td>
+                            <td>{{$kios->daerah->kecamatan}}</td>
                             <td>{{$kios->no_telpon}}</td>
                             <td>{{$kios->kode}}</td>
+                            <td>{{$kios->spjb}}</td>
+                            @if(auth()->user()->role == "1")
                             <td>
                                 <div class="form-inline">
                                     <form action="{{ route('hapus' , $kios->id_kios) }}" class="mr-2" method="POST">
@@ -67,6 +72,7 @@
                                     
                                 </div>
                             </td>
+                            @endif
                         </tr>
                         @endforeach
                     </tbody>

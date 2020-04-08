@@ -50,11 +50,6 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-header">Menu PPI</a>
-          <a class="dropdown-item" href="{{ route('logout') }}"
-          onclick="event.preventDefault();
-                        document.getElementById('logout-form').submit();">
-           {{ __('Logout') }}
-       </a>
 
        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
            @csrf
@@ -85,8 +80,8 @@
           </li>
           @foreach ($url as $link)              
           <li class="nav-item">
-            <a class="nav-link" rel="tooltip" title="Follow us on Twitter" data-placement="bottom" href="{{$link->twitter}}" target="_blank">
-              <i class="fab fa-twitter"></i>
+            <a class="nav-link" rel="tooltip" title="{{$link->no_perusahaan}}" data-placement="bottom" target="_blank">
+              <i class="fab fa fa-phone"></i>
               <p class="d-lg-none d-xl-none">Twitter</p>
             </a>
           </li>
@@ -97,8 +92,8 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" rel="tooltip" title="Follow us on Instagram" data-placement="bottom" href="{{$link->instagram}}" target="_blank">
-              <i class="fab fa-instagram"></i>
+            <a class="nav-link" rel="tooltip" title="{{$link->wa}}" data-placement="bottom" target="_blank">
+              <i class="fab fa-whatsapp"></i>
               <p class="d-lg-none d-xl-none">Instagram</p>
             </a>
           </li>
@@ -120,10 +115,10 @@
               <i class="fab fa-facebook-square"></i>
             </a>
             <a href="#pablo" class="btn btn-primary btn-icon btn-round">
-              <i class="fab fa-twitter"></i>
+              <i class="fab fa fa-phone"></i>
             </a>
             <a href="#pablo" class="btn btn-primary btn-icon btn-round">
-              <i class="fab fa-google-plus"></i>
+              <i class="fab fa-whatsapp"></i>
             </a>
           </div>
         </div>
@@ -146,8 +141,6 @@
                 <!-- First image on the left side -->
                 <p class="blockquote blockquote-primary">{{ $content->deskripsi_2}}
                   <br>
-                  <br>
-                  <small>-NOAA</small>
                 </p>
               </div>
               <!-- Second image on the left side of the article -->
@@ -185,11 +178,6 @@
               <h3>{{ $content->judul }}</h3>
               <p>{{ $content->deskripsi_1}}
               </p>
-              <p>
-                For a start, it does not automatically follow that a record amount of ice will melt this summer. More important for determining the size of the annual thaw is the state of the weather as the midnight sun approaches and temperatures rise. But over the more than 30 years of satellite records, scientists have observed a clear pattern of decline, decade-by-decade.
-              </p>
-              <p>The Arctic Ocean freezes every winter and much of the sea-ice then thaws every summer, and that process will continue whatever happens with climate change. Even if the Arctic continues to be one of the fastest-warming regions of the world, it will always be plunged into bitterly cold polar dark every winter. And year-by-year, for all kinds of natural reasons, there’s huge variety of the state of the ice.
-              </p>
             </div>
           </div>             
           @endforeach
@@ -210,19 +198,19 @@
                 <p class="category text-primary">Manager</p>
                 <p class="description">You can write here details about one of your team members. You can give more details about what they do. Feel free to add some
                   <a href="#">links</a> for people to be able to follow them outside the site.</p>
-                <a href="#pablo" class="btn btn-primary btn-icon btn-round" rel="tooltip" title="{{$user->wa}}"><i class="fab fa-phone"></i></a>
+                <a href="#pablo" class="btn btn-primary btn-icon btn-round" rel="tooltip" title="{{$user->wa}}"><i class="fab fa fa-phone"></i></a>
                 <a href="{{$user->facebook}}" class="btn btn-primary btn-icon btn-round"><i class="fab fa-facebook-square"></i></a>
                   @elseif ( $user->role === 2)
                   <p class="category text-primary">Bendahara</p>
                   <p class="description">You can write here details about one of your team members. You can give more details about what they do. Feel free to add some
                     <a href="#">links</a> for people to be able to follow them outside the site.</p>
-                    <a href="#pablo" class="btn btn-primary btn-icon btn-round" rel="tooltip" title="{{$user->wa}}"><i class="fab fa-phone"></i></a>
+                    <a href="#pablo" class="btn btn-primary btn-icon btn-round" rel="tooltip" title="{{$user->wa}}"><i class="fab fa fa-phone"></i></a>
                     <a href="{{$user->facebook}}" class="btn btn-primary btn-icon btn-round"><i class="fab fa-facebook-square"></i></a>
                   @else 
                   <p class="category text-primary">Kepala Gudang</p>
                   <p class="description">You can write here details about one of your team members. You can give more details about what they do. Feel free to add some
                     <a href="#">links</a> for people to be able to follow them outside the site.</p>
-                    <a href="#pablo" class="btn btn-primary btn-icon btn-round" rel="tooltip" title="{{$user->wa}}"><i class="fab fa-phone"></i></a>
+                    <a href="#pablo" class="btn btn-primary btn-icon btn-round" rel="tooltip" title="{{$user->wa}}"><i class="fab fa fa-phone"></i></a>
                     <a href="{{$user->facebook}}" class="btn btn-primary btn-icon btn-round"><i class="fab fa-facebook-square"></i></a>
                   @endif
                 </div>
@@ -234,8 +222,9 @@
     </div>
     <div class="section section-contact-us text-center" id="pertanyaan">
       <div class="container">
-        <h2 class="title">Ingin Menjadi Kios ? Daftarkan Segera</h2>
-        <p class="description">Kalo Masih Ragu , silahkan Tanya lewat form ini </p>
+        <h2 class="title">Ingin menjadi kios resmi pupuk? </h2>
+        <h2 class="title">Daftarkan segera kios anda</h2>
+        <p class="description">Jika masih ragu silahkan Tanya melalui form dibawah </p>
         <div class="row">
           <div class="col-lg-6 text-center col-md-8 ml-auto mr-auto">
           <form action="{{ route('tambah-pesan') }}" method="post">
@@ -261,8 +250,8 @@
             </div>
             <div class="send-button">
               <button type="submit" class="btn btn-primary btn-round btn-block btn-lg">Kirim Pesan</button>
+            </form>
             </div>
-          </form>
             <div class="send-button ">
               <a href="{{ route('regristasii') }}" class="btn btn-primary btn-round btn-block btn-lg">DAFTAR MENJADI KIOS</a>
             </div>

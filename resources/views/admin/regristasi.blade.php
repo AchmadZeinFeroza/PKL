@@ -11,7 +11,7 @@
                 <i class="pe-7s-culture icon-gradient bg-mean-fruit">
                 </i>
             </div>
-            <div>Regritasi Kios Baru
+            <div>Regritrasi Kios Baru
                 <div class="page-title-subheading">Cabang Jember
                 </div>
             </div>

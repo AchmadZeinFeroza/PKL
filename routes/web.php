@@ -5,6 +5,7 @@
 Route::get('/' , 'c_web@index');
 Route::post('createRegristasi' , 'c_regristasi@postRegristasi')->name('postRegristasi');
 Route::get('/resgristasii' , 'c_regristasi@regristasi')->name('regristasii');
+Route::post('/pesan/tambah' , 'c_pesan@store')->name('tambah-pesan');
 
 //Batas umum
 
@@ -25,7 +26,6 @@ Route::group(["middleware" => ["auth","checkRole: 1,2,3"]] , function(){
     Route::resource('/file' , 'c_file');
     Route::delete('/kios/hapus/{id}', 'c_kios@hapus')->name('hapus');
     Route::get('/pesan' , 'c_pesan@index')->name('pesan');
-    Route::post('/pesan/tambah' , 'c_pesan@store')->name('tambah-pesan');
     Route::post('/kios/tambah' , 'c_kios@tambah')->name('tambah-kios');
     Route::delete('/pesan/hapus/{id}' , 'c_pesan@destroy')->name('hapus-pesan');
     Route::group(["middleware" => ["auth", "checkRole:1,3"]] , function(){

@@ -94,6 +94,7 @@ class c_web extends Controller
         }
         
         $data->save();
+        Alert::success('Konten Berhasil Ditambahkan', 'Success');
         $data = m_web::get();
         return redirect('web');
     }
@@ -105,11 +106,11 @@ class c_web extends Controller
             'deskripsi_1' => 'required',
             'deskripsi_2' => 'required',
             'judul' => 'required',
-            'foto_1' => 'required|image|mimes:jpeg,png,gif,webp',
-            'foto_2' => 'required|image|mimes:jpeg,png,gif,webp',
-            'foto_3' => 'required|image|mimes:jpeg,png,gif,webp',
-            'foto_4' => 'required|image|mimes:jpeg,png,gif,webp',
-            'foto_5' => 'required|image|mimes:jpeg,png,gif,webp'
+            'foto_1' => 'nullable|image|mimes:jpeg,png,gif,webp',
+            'foto_2' => 'nullable|image|mimes:jpeg,png,gif,webp',
+            'foto_3' => 'nullable|image|mimes:jpeg,png,gif,webp',
+            'foto_4' => 'nullable|image|mimes:jpeg,png,gif,webp',
+            'foto_5' => 'nullable|image|mimes:jpeg,png,gif,webp'
         ]);
         $data->judul = $request['judul'];
         $data->deskripsi_1 = $request['deskripsi_1'];
@@ -150,7 +151,7 @@ class c_web extends Controller
     public function destroy($id)
     {
         $data = m_web::find($id)->delete();
-        Alert::success('Data Berhasil di Hapus', 'Success');
+        Alert::success('Konten Berhasil di Hapus', 'Success');
         // $data->save();
         $data = m_web::get();
         return redirect('web');

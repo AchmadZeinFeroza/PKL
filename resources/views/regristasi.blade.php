@@ -39,6 +39,18 @@
                     </a>
                   </div>
                 </div>
+                @if ($errors->any())
+                <div class="alert alert-danger alert-dismissible fade show">
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                  <ul>
+                    @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                    @endforeach
+                  </ul>
+                </div>
+                @endif
                 <div class="card-body">
                   <div class="input-group no-border">
                     <div class="input-group-prepend">
@@ -70,7 +82,7 @@
                         <i class="now-ui-icons location_pin"></i>
                       </span>
                     </div>
-                    <input type="text" name="desa" class="form-control" placeholder="Desa">
+                    <input type="text" name="alamat" class="form-control" placeholder="Alamat">
                   </div>
                   <div class="input-group no-border">
                     <div class="input-group-prepend">
@@ -78,8 +90,9 @@
                         <i class="now-ui-icons location_pin"></i>
                       </span>
                     </div>
-                    <input type="text" name="alamat" class="form-control" placeholder="Alamat">
+                    <input type="text" name="desa" class="form-control" placeholder="Desa">
                   </div>
+                  <small class="mx-auto">Untuk Warga Ajung , Jenggawah , Mumbulsari , Silo</small>
                   <div class="input-group no-border">
                     <div class="input-group-prepend">
                       <span class="input-group-text">
@@ -87,12 +100,12 @@
                       </span>
                     </div>
                     <select class="custom-select form-control" id="inputGroupSelect04" name="kecamatan">
-                        <option selected class="text-dark">Kecamatan</option>
-                        <option value="1" class="text-dark">Ajung</option>
-                        <option value="2" class="text-dark">Jenggawah</option>
-                        <option value="3" class="text-dark">Mumbulsari</option>
-                        <option value="4" class="text-dark">Silo</option>
-                      </select>
+                      <option selected class="text-dark">Kecamatan</option>
+                      <option value="1" class="text-dark">Ajung</option>
+                      <option value="2" class="text-dark">Jenggawah</option>
+                      <option value="3" class="text-dark">Mumbulsari</option>
+                      <option value="4" class="text-dark">Silo</option>
+                    </select>
                   </div>
                   <div class="input-group no-border">
                     <div class="input-group-prepend">
@@ -137,8 +150,8 @@
                 </div>
                 <div class="card-footer text-center">
                   <button type="submit" class="btn btn-neutral btn-round btn-lg">DAFTAR</button>
+                </form>
                 </div>
-              </form>
             </div>
           </div>
         </div>

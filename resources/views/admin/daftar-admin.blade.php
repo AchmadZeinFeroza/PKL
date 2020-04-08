@@ -145,6 +145,7 @@
                     <div class="position-relative form-group">
                         <label for="avatar">Image</label>
                         <input name="avatar" id="avatar" type="file" class="form-control-file">
+                        <small class="form-text text-muted">File harus berupa jpg , png dan jpeg</small>
                         <small class="form-text text-muted">Pastikan Semua data terisi dengan benar</small>
                     </div>
             </div>
@@ -229,6 +230,7 @@
                                 <label for="avatar" class="col-sm-4 col-form-label text-right">Foto</label>
                                 <div class="col-sm-8">
                                   <input type="file" name="avatar" id="avatar" class="form-control-plaintext text-left data-avatar" value="">
+                                  <small>File harus berupa jpg , png dan jpeg</small>
                                 </div>
                             </div>
                             <div class="form-group row mx-auto ">

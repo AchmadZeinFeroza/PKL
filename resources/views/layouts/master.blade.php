@@ -431,7 +431,7 @@
                             <li>
                                 <a href="#">
                                     <i class="metismenu-icon pe-7s-users"></i>
-                                    Daftar Client
+                                    Daftar Kios
                                     <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                                 </a>
                                 <ul>
@@ -452,7 +452,7 @@
                             <li  >
                                 <a href="{{ route('regristasi.index') }}">
                                     <i class="metismenu-icon pe-7s-id"></i>
-                                    Regristasi Client Baru
+                                    Regristrasi Client Baru
                                 </a>
                             </li>
                             <li>

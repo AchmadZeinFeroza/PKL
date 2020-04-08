@@ -48,7 +48,6 @@
                     <button type="submit" class="btn btn-danger" >Hapus</button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </form>
-                 <button type="button" class="btn btn-success">Balas</button>
             </div>
           </div>
         </div>

@@ -55,9 +55,10 @@ class c_regristasi extends Controller
             'nama_kios' => 'required',
             'pemilik' => 'required',
             'email' => 'required',
-            'judul' => 'required',
             'alamat' => 'required',
-            'avatar' => 'required|image|mimes:jpeg,png,gif,webp',
+            'desa' => 'required',
+            'kecamatan' => 'required',
+            'no_telpon' => 'required',
             'ktp' => 'required|image|mimes:jpeg,png,gif,webp,pdf',
             'tdp' => 'required|image|mimes:jpeg,png,gif,webp,pdf',
             'siup' => 'required|image|mimes:jpeg,png,gif,webp,pdf'

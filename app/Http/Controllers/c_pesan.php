@@ -24,11 +24,6 @@ class c_pesan extends Controller
     public function store(Request $request)
     {
         $data = new m_pesan;
-        $request->validate([
-            'namas' => 'required',
-            'pemilik' => 'required',
-            'email' => 'required'
-        ]);
         $data->nama = $request['nama'];
         $data->email = $request['email'];
         $data->pesan = $request['pesan'];

@@ -218,7 +218,7 @@
             <p class="font-content">4.</p>
         </div>
         <div style="width: 96%; display: inline-block;">
-            <p class="font-content"  style="margin-top: -3px; text-align:justify;">Penunjukan pengecer ini berlaku terhitung mulai tanggal satu, bulan Januari, tahun dua ribu dua puluh (01-01-2020) sampai dengan tanggal tiga puluh satu, bulan Desember, tahun dua ribu dua puluh (31-12-2020).</p>
+            <p class="font-content"  style="margin-top: -3px; text-align:justify;">Penunjukan pengecer ini berlaku terhitung mulai tanggal satu, bulan Januari, tahun dua ribu {{$tanggal[4]}} (01-01-{{$tgl_angka[0]}}) sampai dengan tanggal tiga puluh satu, bulan Desember, tahun dua ribu {{$tanggal[4]}} (31-12-{{$tgl_angka[0]}}).</p>
         </div>
     <br>
     <div class="inline" style="margin-top:-20px;">

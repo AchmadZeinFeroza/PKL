@@ -18,11 +18,10 @@ class c_user extends Controller
         $request->validate([
             'name' => 'required',
             'email' => 'required',
-            'judul' => 'required',
             'alamat' => 'required',
-            'nik' => 'numeric|required',
-            'wa' => 'numeric|min:8|max:13',  
-            'avatar' => 'required|image|mimes:jpeg,png,gif,webp'
+            'nik' => 'numeric|required|digits:16',
+            'wa' => 'nullable|numeric|digits_between:10,13',  
+            'avatar' => 'nullable|image|mimes:jpeg,png,gif,webp'
         ]);
         $profil->role = $request['role'];
         $profil->name = $request['name'];
@@ -57,11 +56,11 @@ class c_user extends Controller
         $request->validate([
             'name' => 'required',
             'email' => 'required',
-            'judul' => 'required',
             'alamat' => 'required',
-            'nik' => 'numeric|required',
-            'wa' => 'numeric|min:8|max:13',
-            'avatar' => 'required|image|mimes:jpeg,png,gif,webp'
+            'nik' => 'numeric|required|digits:16',
+            'wa' => 'nullable|numeric|digits_between:10,13',
+            'avatar' => 'nullable|image|mimes:jpeg,png,gif,webp',
+            'facebook' => 'nullable|active_url'
         ]);
         $data->role = $request['role'];
         $data->name = $request['name'];
