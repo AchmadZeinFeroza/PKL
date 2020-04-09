@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\m_web;
 use App\User;
 use App\m_url;
+use App\m_posisi;
 use Alert;
 
 class c_web extends Controller
@@ -27,7 +28,8 @@ class c_web extends Controller
     {
         $data = m_web::get();
         $url = m_url::get();
-        return view('admin/pengelolaan-web' , compact('data' , 'url'));
+        $users = m_posisi::get();
+        return view('admin/pengelolaan-web' , compact('data' , 'url' ,'users'));
     }
     /**
      * Show the form for creating a new resource.
@@ -142,6 +144,16 @@ class c_web extends Controller
 
     }
 
+    public function profilDeskripsi(Request $request, $id)
+    {
+        $data = m_posisi::find($id);
+        $data->deskripsi = $request['deskripsi'];
+        $data->save();
+        $data = m_web::get();
+        Alert::success('Data Berhasil di Ubah', 'Success');
+        return redirect('web');
+    }
+
     /**
      * Remove the specified resource from storage.
      *
@@ -152,7 +164,6 @@ class c_web extends Controller
     {
         $data = m_web::find($id)->delete();
         Alert::success('Konten Berhasil di Hapus', 'Success');
-        // $data->save();
         $data = m_web::get();
         return redirect('web');
     }

@@ -13,12 +13,15 @@ class Posisi extends Seeder
     {
         DB::table('posisi')->insert([
             'posisi' => 'Manager',            
+            'deskripsi' => 'Mengatur keuangan dalam Perusahaan Perdagangan Indonesia cabang Jember',            
         ]);
         DB::table('posisi')->insert([
             'posisi' => 'Bendahara',            
+            'deskripsi' => 'Mengatur keuangan dalam Perusahaan Perdagangan Indonesia cabang Jember',            
         ]);
         DB::table('posisi')->insert([
             'posisi' => 'Kepala Gudang',            
+            'deskripsi' => 'Mengatur keuangan dalam Perusahaan Perdagangan Indonesia cabang Jember',            
         ]);
     }
 }

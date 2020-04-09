@@ -16,6 +16,7 @@ class CreatePosisi extends Migration
         Schema::create('posisi', function (Blueprint $table) {
             $table->bigIncrements('id_posisi');
             $table->string('posisi');
+            $table->string('deskripsi');
             $table->timestamps();
         });
     }

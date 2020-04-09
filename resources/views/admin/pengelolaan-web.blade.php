@@ -46,6 +46,11 @@
             <span>URL Web</span>
         </a>
     </li>
+    <li class="nav-item">
+        <a role="tab" class="nav-link" id="tab-3" data-toggle="tab" href="#tab-content-3">
+            <span>Deskripsi Profil</span>
+        </a>
+    </li>
 </ul>
 <div class="tab-content">
     <div class="tab-pane tabs-animation fade show active" id="tab-content-0" role="tabpanel">
@@ -255,6 +260,24 @@
                             @endforeach
                             <button class="mt-1 btn btn-alternate" type="submit">Simpan</button>
                         </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="tab-pane tabs-animation fade" id="tab-content-3" role="tabpanel">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="main-card mb-3 card">
+                    <div class="card-body"><h5 class="card-title">Deskripsi Profil</h5>
+                        @foreach ($users as $user)
+                        <form action="{{route('ubahDeskripsi' , $user->id_posisi)}}" method="POST">
+                            {{csrf_field()}}{{method_field('PUT')}}
+                            <div class="position-relative form-group"><label for="exampleText">{{$user->posisi}}</label> <input name="deskripsi" id="deskripsi" placeholder="Masukkan Deskripsi" type="text" class="form-control" value="{{$user->deskripsi}}"></div>
+                            <button class="mt-1 btn btn-alternate" type="submit">Simpan</button>
+                        </form>
+                        <br>
+                        @endforeach
                     </div>
                 </div>
             </div>

@@ -196,20 +196,17 @@
                 <h4 class="title">{{$user->name}}</h4>
                   @if( $user->role === 1)
                 <p class="category text-primary">Manager</p>
-                <p class="description">You can write here details about one of your team members. You can give more details about what they do. Feel free to add some
-                  <a href="#">links</a> for people to be able to follow them outside the site.</p>
+                <p class="description">{{$user->posisi->deskripsi}}</p>
                 <a href="#pablo" class="btn btn-primary btn-icon btn-round" rel="tooltip" title="{{$user->wa}}"><i class="fab fa fa-phone"></i></a>
                 <a href="{{$user->facebook}}" class="btn btn-primary btn-icon btn-round"><i class="fab fa-facebook-square"></i></a>
                   @elseif ( $user->role === 2)
                   <p class="category text-primary">Bendahara</p>
-                  <p class="description">You can write here details about one of your team members. You can give more details about what they do. Feel free to add some
-                    <a href="#">links</a> for people to be able to follow them outside the site.</p>
+                  <p class="description">{{$user->posisi->deskripsi}}</p>
                     <a href="#pablo" class="btn btn-primary btn-icon btn-round" rel="tooltip" title="{{$user->wa}}"><i class="fab fa fa-phone"></i></a>
                     <a href="{{$user->facebook}}" class="btn btn-primary btn-icon btn-round"><i class="fab fa-facebook-square"></i></a>
                   @else 
                   <p class="category text-primary">Kepala Gudang</p>
-                  <p class="description">You can write here details about one of your team members. You can give more details about what they do. Feel free to add some
-                    <a href="#">links</a> for people to be able to follow them outside the site.</p>
+                  <p class="description">{{$user->posisi->deskripsi}}</p>
                     <a href="#pablo" class="btn btn-primary btn-icon btn-round" rel="tooltip" title="{{$user->wa}}"><i class="fab fa fa-phone"></i></a>
                     <a href="{{$user->facebook}}" class="btn btn-primary btn-icon btn-round"><i class="fab fa-facebook-square"></i></a>
                   @endif

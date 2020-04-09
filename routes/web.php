@@ -32,6 +32,7 @@ Route::group(["middleware" => ["auth","checkRole: 1,2,3"]] , function(){
         Route::get('/web' , 'c_web@web')->name('pengelolaan-web');
         Route::resource('/pengelolaan-web' , 'c_web');
         Route::put('/pengelolaan-web/url/{id}' , 'c_web@url')->name('url');
+        Route::put('/pengelolaan-web/profilDeskripsi/{id}' , 'c_web@profilDeskripsi')->name('ubahDeskripsi');
     }); 
 });
      
