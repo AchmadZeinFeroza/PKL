@@ -449,12 +449,14 @@
                                     </li>
                                 </ul>
                             </li>
+                            @if(auth()->user()->role == "1")
                             <li  >
                                 <a href="{{ route('regristasi.index') }}">
                                     <i class="metismenu-icon pe-7s-id"></i>
-                                    Regristrasi Client Baru
+                                    Registrasi Kios Baru
                                 </a>
                             </li>
+                            @endif
                             <li>
                                 <a href="{{ route('letter.index') }}">
                                     <i class="metismenu-icon pe-7s-users"></i>

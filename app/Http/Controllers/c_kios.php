@@ -65,7 +65,7 @@ class c_kios extends Controller
             'kecamatan' => 'required',
             'desa' => 'required',
             'no_telpon' => 'required|numeric|digits_between:10,13',
-            'kode' => 'numeric|required',
+            'kode' => 'required',
             'spjb' => 'required|numeric',
         ]);
         $data->pemilik = $request['pemilik'];
@@ -171,7 +171,7 @@ class c_kios extends Controller
             'kecamatan' => 'required',
             'desa' => 'required',
             'no_telpon' => 'required|numeric|digits_between:10,13',
-            'kode' => 'numeric|required',
+            'kode' => 'required',
             'spjb' => 'required|numeric|unique:kios',
         ]);
         $data->pemilik = $request['pemilik'];

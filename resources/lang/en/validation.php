@@ -82,8 +82,8 @@ return [
         'string' => 'The :attribute mungkin tidak lebih besar dari:. Karakter max',
         'array' => 'The :attribute mungkin tidak memiliki lebih dari:. Item max',
     ],
-    'mimes' => 'The :attribute harus file tipe::. Nilai-nilai',
-    'mimetypes' => 'The :attribute harus file tipe::. Nilai-nilai',
+    'mimes' => 'The :attribute harus file type: :values.',
+    'mimetypes' => 'The :attribute harus file type: :values.',
     'min' => [
         'numeric' => 'The :attribute harus minimal :min.',
         'file' => 'The :attribute harus minimal :min kilobyte.',
