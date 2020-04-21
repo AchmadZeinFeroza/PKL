@@ -140,7 +140,7 @@ class c_letter extends Controller
 
     public function update(Request $request, $id)
     {
-        $surat = m_kios::find($id);
+        $surat = m_kios::findOrFail($id);
         $request->validate([
             'tanggal' => 'required',
         ]);
