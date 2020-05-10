@@ -160,7 +160,7 @@ class c_web extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function show($id)
     {
         $data = m_web::find($id)->delete();
         Alert::success('Konten Berhasil di Hapus', 'Success');

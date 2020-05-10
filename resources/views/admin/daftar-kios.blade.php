@@ -78,6 +78,7 @@
                     </tbody>
                 </table>
                 <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal1">Tambah</button>
+                <a class="btn btn-alternate" href="{{route('download')}}">Download Kios</a>
                 <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
                     Tambah Massal
                 </button> <small>       ( contoh berkas massal bisa didownload di menu berkas )</small>

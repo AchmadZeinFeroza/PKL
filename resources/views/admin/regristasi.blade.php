@@ -55,6 +55,7 @@
                                     {{csrf_field()}}
                                         <tr>
                                             <input type="hidden" name="id_regristasi" value="{{ $kios->id_regristasi }}">
+                                            <input type="hidden" name="email" value="{{ $kios->email }}">
                                             <td>{{ $kios->pemilik }} <input type="hidden" value="{{$kios->pemilik}}" name="pemilik"></td>
                                             <td>{{ $kios->nama_kios }} <input type="hidden" value="{{$kios->nama_kios}}" name="nama_kios"></td>
                                             <td>{{ $kios->alamat }} <input type="hidden" value="{{$kios->alamat}}" name="alamat"></td>

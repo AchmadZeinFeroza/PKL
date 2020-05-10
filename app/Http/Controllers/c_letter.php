@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Illuminate\Http\Request; 
 use App\m_kios;
 use PDF;
 use Alert;
@@ -160,4 +160,5 @@ class c_letter extends Controller
         return  $oMerger->save("Surat-Pertanggung-Jawaban.pdf", "download");
     }
 
+  
 }

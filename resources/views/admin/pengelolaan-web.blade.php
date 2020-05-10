@@ -165,7 +165,7 @@
                                                     <button type="submit" class="btn btn-success">Simpan</button>
                                                 </div>
                                                 <div class="col-sm-10 offset-sm-2 col-md-2 form-group">
-                                                <a class="btn btn-danger" href="{{ route('pengelolaan-web.destroy' , $content->id_content) }}">Hapus</a>
+                                                    <a class="btn btn-danger" href="{{ route('pengelolaan-web.destroy' , $content->id_content) }}">Hapus</a>
                                                 </div>
                                             </div>
                                         </form>

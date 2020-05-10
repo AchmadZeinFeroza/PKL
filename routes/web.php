@@ -16,6 +16,7 @@ Route::group(["middleware" => ["auth","checkRole: 1,2,3"]] , function(){
     Route::resource('/kios' , 'c_kios');
     Route::resource('/letter' , 'c_letter');
     Route::get('ajax.get.kios' , 'c_kios@getkios')->name('ajax-kios');
+    Route::get('/download-kios' , 'c_kios@download')->name('download');
     Route::get('kecamatan' , 'c_kios@getkecamatan')->name('kecamatan');
     Route::patch('letter/penunjukan/{id}' , 'c_letter@penunjukan')->name('penunjukan');
     Route::post('regristasi-ktp/{id}' , 'c_regristasi@getktp');
@@ -26,6 +27,7 @@ Route::group(["middleware" => ["auth","checkRole: 1,2,3"]] , function(){
     Route::resource('/file' , 'c_file');
     Route::delete('/kios/hapus/{id}', 'c_kios@hapus')->name('hapus');
     Route::get('/pesan' , 'c_pesan@index')->name('pesan');
+    Route::post('/email' , 'c_pesan@send')->name('email');
     Route::post('/kios/tambah' , 'c_kios@tambah')->name('tambah-kios');
     Route::delete('/pesan/hapus/{id}' , 'c_pesan@destroy')->name('hapus-pesan');
     Route::group(["middleware" => ["auth", "checkRole:1,3"]] , function(){

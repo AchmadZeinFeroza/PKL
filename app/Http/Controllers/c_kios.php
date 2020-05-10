@@ -1,7 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Mail;
+use App\Mail\EmailDitolak;
+use App\Mail\EmailDisetujui;
 use App\m_kios;
 use App\m_regristasi;
 use App\m_penolakan;
@@ -9,6 +11,7 @@ use Illuminate\Http\Request;
 use DataTables; 
 use App\Imports\data_kios;
 use Excel;
+use PDF;
 use Alert;
 use Carbon\Carbon;
 
@@ -90,6 +93,11 @@ class c_kios extends Controller
     public function store(Request $request)
     {
         $id = $request['id_regristasi'];
+        $kios = array(
+            'pemilik' => $request['pemilik'],
+            'alamat' => $request['alamat']
+        );
+        Mail::to($request['email'])->send(new EmailDisetujui($kios));
         $kios = new m_kios;
         $kios->pemilik = $request['pemilik'];
         $kios->nama_kios = $request['nama_kios'];
@@ -111,6 +119,12 @@ class c_kios extends Controller
     {
         $id = $request['id_regristasi'];
         $regristasi = m_regristasi::where('id_regristasi', $id)->first();
+        $kios = array(
+            'pemilik' => $regristasi->pemilik,
+            'alamat' => $regristasi->alamat,
+            'alasan' => $regristasi['alasan']
+        );
+        Mail::to($regristasi->email)->send(new EmailDitolak($kios));
         $kios = new m_penolakan;
         $kios->pemilik = $regristasi->pemilik;
         $kios->nama_kios = $regristasi->nama_kios;
@@ -186,5 +200,10 @@ class c_kios extends Controller
         Alert::success('Kios Berhasil Di Ubah', 'Success');
         return redirect('kios');
 
+    }
+    public function download(){
+        $data = m_kios::get();
+        $pdf = PDF::loadview('admin/download-kios',compact('data'));
+    	return $pdf->download('laporan-penjualan-pdf.pdf');
     }
 }

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\Email;
 use App\m_pesan;
 use App\User;
 use App\m_web;
@@ -45,4 +47,15 @@ class c_pesan extends Controller
         Alert::success('Data Berhasil di Hapus', 'Success');
         return redirect('pesan');
     }
+    public function send(Request $request){
+        $data = array(
+                'nama' => $request->nama,
+                'pesan' => $request->pesan,
+                'email' => $request->email
+        );
+        Mail::to($request->email)->send(new Email($data));
+        Alert::success('Pesan Berhasil Dikirim', 'Success');
+        return redirect('pesan');
+    }
+
 }
