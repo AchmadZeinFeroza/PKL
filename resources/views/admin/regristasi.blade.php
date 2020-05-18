@@ -46,6 +46,7 @@
                                     <th>Desa</th>
                                     <th>Kecamatan</th>
                                     <th>Email</th>
+                                    <th>Tanggal</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
@@ -63,9 +64,10 @@
                                             <td><a class="btn btn-rounded detail-siup" data-toggle="modal" data-target="#detail-siup"  data-id="{{ $kios->id_regristasi}}"><i class="pe-7s-home"> Lihat Berkas</i></a></td>
                                             <td><a class="btn btn-rounded detail-tdp" data-toggle="modal" data-target="#detail-tdp"  data-id="{{ $kios->id_regristasi}}"><i class="pe-7s-copy-file"> Lihat Berkas</i></a></td>
                                             <td>{{ $kios->no_telpon }} <input type="hidden" value="{{$kios->no_telpon}}" name="no_telpon"></td>
-                                            <td>{{ $kios->desa }} <input type="hidden" value="{{$kios->desa}}" name="desa"></td>
+                                            <td>{{ $kios->tempat->desa }} <input type="hidden" value="{{$kios->desa}}" name="desa"></td>
                                             <td>{{ $kios->daerah->kecamatan }} <input type="hidden" value="{{$kios->kecamatan}}" name="kecamatan"></td>
                                             <td>{{ $kios->email }}</td>
+                                            <td>{{ $kios->created_at->format('d M Y') }}</td>
                                             <td>
                                                 <div class="btn-group">
                                                     <button type="submit" class="btn btn-rounded"><i class="fa fa-check" style="color:lightgreen"></i></button>

@@ -79,38 +79,65 @@
                   <div class="input-group no-border">
                     <div class="input-group-prepend">
                       <span class="input-group-text">
-                        <i class="now-ui-icons location_pin"></i>
+                        <i class="now-ui-icons location_compass-05"></i>
                       </span>
                     </div>
-                    <input type="text" name="alamat" class="form-control" placeholder="Alamat">
-                  </div>
-                  <div class="input-group no-border">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text">
-                        <i class="now-ui-icons location_pin"></i>
-                      </span>
-                    </div>
-                    <input type="text" name="desa" class="form-control" placeholder="Desa">
-                  </div>
-                  <small class="mx-auto">Untuk Warga Ajung , Jenggawah , Mumbulsari , Silo</small>
-                  <div class="input-group no-border">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text">
-                        <i class="now-ui-icons ui-1_email-85"></i>
-                      </span>
-                    </div>
-                    <select class="custom-select form-control" id="inputGroupSelect04" name="kecamatan">
-                      <option selected class="text-dark">Kecamatan</option>
+                    <select class="custom-select form-control" id="kecamatan" name="kecamatan">
+                      <option selected class="text-dark">-- Pilih Kecamatan --</option>
                       <option value="1" class="text-dark">Ajung</option>
                       <option value="2" class="text-dark">Jenggawah</option>
                       <option value="3" class="text-dark">Mumbulsari</option>
                       <option value="4" class="text-dark">Silo</option>
                     </select>
                   </div>
+                  <small class="mx-auto">Untuk Warga Ajung , Jenggawah , Mumbulsari , Silo</small>
                   <div class="input-group no-border">
                     <div class="input-group-prepend">
                       <span class="input-group-text">
-                        <i class="now-ui-icons objects_globe"></i>
+                        <i class="now-ui-icons location_pin"></i>
+                      </span>
+                    </div>
+                    <select class="custom-select form-control" id="inputGroupSelect04" name="desa">
+                      <option selected class="text-dark">-- Pilih Desa --</option>
+                      <option value="1" class="text-dark sembunyi 1">Klompangan</option>
+                      <option value="2" class="text-dark sembunyi 2">Mangaran</option>
+                      <option value="3" class="text-dark sembunyi 3">Pancakarya</option>
+                      <option value="4" class="text-dark sembunyi 4">Rowo Indah</option>
+                      <option value="5" class="text-dark sembunyi 5">Sukamakmur</option>
+                      <option value="6" class="text-dark sembunyi 6">Wirowongso</option>
+                      <option value="7" class="text-dark sembunyi 7">Wonojati</option>
+                      <option value="8" class="text-dark sembunyi 8">Kertonegoro</option>
+                      <option value="9" class="text-dark sembunyi 9">Kemuningsari</option>
+                      <option value="10" class="text-dark sembunyi 10">Sruni</option>
+                      <option value="11" class="text-dark sembunyi 11">Jatisari</option>
+                      <option value="12" class="text-dark sembunyi 12">Jatimulyo</option>
+                      <option value="13" class="text-dark sembunyi 13">Cangkring</option>
+                      <option value="14" class="text-dark sembunyi 14">Jenggawah</option>
+                      <option value="15" class="text-dark sembunyi 15">Karang Kedawung</option>
+                      <option value="16" class="text-dark sembunyi 16">Lengkong</option>
+                      <option value="17" class="text-dark sembunyi 17">Lempeji</option>
+                      <option value="18" class="text-dark sembunyi 18">Kawangrejo</option>
+                      <option value="19" class="text-dark sembunyi 19">Mumbulsari</option>
+                      <option value="20" class="text-dark sembunyi 20">Tamansari</option>
+                      <option value="21" class="text-dark sembunyi 21">Suco</option>
+                      <option value="22" class="text-dark sembunyi 22">Garahan</option>
+                      <option value="23" class="text-dark sembunyi 23">Karangharjo</option>
+                      <option value="24" class="text-dark sembunyi 24">Harjomulyo</option>
+                      <option value="25" class="text-dark sembunyi 25">Mulyorejo</option>
+                    </select>
+                  </div>
+                  <div class="input-group no-border">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <i class="fa fa-home"></i>
+                      </span>
+                    </div>
+                    <input type="text" name="alamat" class="form-control" placeholder="Alamat (Harus Detail)">
+                  </div>
+                  <div class="input-group no-border">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <i class="fa fa-phone"></i>
                       </span>
                     </div>
                     <input type="number" name="no_telpon" class="form-control" placeholder="Nomor Telepon">
@@ -206,6 +233,39 @@
   <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
   <!-- Control Center for Now Ui Kit: parallax effects, scripts for the example pages etc -->
   <script src="{{ asset('js/now-ui-kit.js?v=1.3.0')}}" type="text/javascript"></script>
+  <script>
+      
+      $(document).ready(function () {
+     $('.sembunyi').hide();
+      $('#kecamatan').change(function () {
+        var kecamatan = this.value;
+        var updateurl = "{{url('tampilkan')}}" + '/' + kecamatan;
+        $.ajaxSetup({
+          headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          }
+        });
+
+        $.ajax({
+          type: "GET",
+          dataType: 'json',
+          crossDomain: true,
+          url: updateurl,
+          data: { '_token': $('input[name=_token]').val() },
+          success: function (data) {
+            $('.sembunyi').hide();
+            console.log(data);
+            $.each(data, function (index, value) {
+            // console.log(value.id_district);
+              $('.'+value.id_desa+'').show()
+            });
+          }
+          }).done(function (data) {
+          console.log('suksess');
+        });
+      });
+      });
+  </script>
 </body>
 
 

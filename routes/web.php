@@ -6,6 +6,7 @@ Route::get('/' , 'c_web@index');
 Route::post('createRegristasi' , 'c_regristasi@postRegristasi')->name('postRegristasi');
 Route::get('/resgristasii' , 'c_regristasi@regristasi')->name('regristasii');
 Route::post('/pesan/tambah' , 'c_pesan@store')->name('tambah-pesan');
+Route::get('/tampilkan/{kecamatan}' , 'c_regristasi@kecamatan')->name('kecamatan');
 
 //Batas umum
 
@@ -29,6 +30,8 @@ Route::group(["middleware" => ["auth","checkRole: 1,2,3"]] , function(){
     Route::get('/pesan' , 'c_pesan@index')->name('pesan');
     Route::post('/email' , 'c_pesan@send')->name('email');
     Route::post('/kios/tambah' , 'c_kios@tambah')->name('tambah-kios');
+    Route::get('user' , 'c_user@index')->name('user-admin');
+    Route::post('user/{id}', 'c_user@showdata');
     Route::delete('/pesan/hapus/{id}' , 'c_pesan@destroy')->name('hapus-pesan');
     Route::group(["middleware" => ["auth", "checkRole:1,3"]] , function(){
         Route::get('/web' , 'c_web@web')->name('pengelolaan-web');
@@ -39,10 +42,9 @@ Route::group(["middleware" => ["auth","checkRole: 1,2,3"]] , function(){
 });
      
 Route::group(["middleware" => ["auth", "checkRole:1"]] , function(){
-    Route::get('user' , 'c_user@index')->name('user-admin');
+
     Route::post('tambah' , 'c_user@store')->name('tambah-admin');
     Route::delete('user/hapus/{id}' , 'c_user@destroy')->name('hapus-admin');
-    Route::post('user/{id}', 'c_user@showdata');
     Route::post('kios/import' , 'c_kios@import')->name('import.kios');
     Route::match(['post','patch'],'user/ubah/{id}' , 'c_user@update');
 });

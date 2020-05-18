@@ -21,9 +21,10 @@
     <div class="col-md-12">
       <ul class="list-group">
         @foreach ($data as $pesan)
-        <li class="list-group-item p-3" data-toggle="modal" data-target="#exampleModalCenter{{$pesan->id_pesan}}"><i
-            class="fas fa-envelope text-info mx-5 "></i>{{$pesan->email}}<span
-            class="d-flex justify-content-end"><small>{{$pesan->created_at}}</small></span>
+        <li class="list-group-item p-3 pesan" data-toggle="modal" data-target="#exampleModalCenter{{$pesan->id_pesan}}">
+          <span class="badge badge-dark">Baru</span>
+          <i class="fas fa-envelope text-info mx-5 "></i>{{$pesan->email}}<span
+          class="d-flex justify-content-end"><small>{{$pesan->created_at}}</small> </span>
         </li>
         @endforeach
       </ul>
@@ -52,7 +53,7 @@
               <label for="exampleFormControlTextarea1">Balas Pesan  :</label>
               <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="pesan"></textarea>
             </div>
-            <button type="submit" class="btn btn-alternate">Kirim</button>
+            <button type="submit" class="btn btn-alternate" id="kirim">Kirim</button>
           </form>
         </div>
         <div class="modal-footer">
@@ -74,6 +75,11 @@
     });
     $(".list-group-item").mouseout(function () {
       $(this).removeClass("active");
+    });
+  </script>
+  <script>
+    $('.pesan').click(function(){
+      $(this).find('.badge-dark').remove();
     });
   </script>
   @endsection

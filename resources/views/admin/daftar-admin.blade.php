@@ -47,10 +47,12 @@
                             data-toggle="modal" data-target="#detail-profil"  data-id='{{ $user->id}}'>
                                 Detail
                             </button>
+                            @if(auth()->user()->id == "1")
                             <button  type="button" class="mb-2 mr-2 btn btn-danger"
                             data-toggle="modal" data-target="#hapus-profil{{ $user->id }}">
                                 Hapus
                             </button>
+                            @endif
                         </td>
 
                     </tr>
@@ -64,10 +66,12 @@
                             data-toggle="modal" data-target="#detail-profil"  data-id='{{ $user->id}}' >
                                 Detail
                             </button>
+                            @if(auth()->user()->id == "1")
                             <button  type="button" class="mb-2 mr-2 btn btn-danger"
                             data-toggle="modal" data-target="#hapus-profil{{ $user->id }}">
                                 Hapus
                             </button>
+                            @endif
                         </td>
                         <td class=" px-py-5 ml-5 d-flex justify-content-start "><img
                                 src="{{ $user->getAvatar()  }}" class="rounded-circle" width="150px">
@@ -209,6 +213,12 @@
                                 </div>
                             </div>
                             <div class="form-group row mx-auto ">
+                                <label for="password" class="col-sm-4 col-form-label text-right">Password</label>
+                                <div class="col-sm-8">
+                                  <input type="password" name="password" id="password" class="form-control-plaintext text-left data-password" value="">
+                                </div>
+                            </div>
+                            <div class="form-group row mx-auto ">
                                 <label for="nik" class="col-sm-4 col-form-label text-right">NIK</label>
                                 <div class="col-sm-8">
                                   <input type="text" name="nik" id="nik" class="form-control-plaintext text-left data-nik" value="">
@@ -314,10 +324,15 @@
           }else{
             $('.fotoprofil').attr("src","{{asset('profil')}}"  + '/' + data.avatar);
           }
-          
+          if(id !== {{auth()->user()->id}}){
+              $('#ubah').hide();
+          }else{
+            $('#ubah').show();
+          }
           $('.data-name').val(data.name);
           $('.data-id').val(data.id);
           $('.data-email').val(data.email);
+          $('.data-password').val(data.password);
           $('.data-role').html(data.role);
           $('.data-alamat').val(data.alamat);
           $('.data-facebook').val(data.facebook);
@@ -330,6 +345,7 @@
         }
       }).done(function (data) {
         console.log('suksess');
+        console.log(data.password);
       });
     });
 

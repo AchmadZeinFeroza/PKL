@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Auth;
 use Illuminate\Http\Request; 
 use App\m_kios;
+use App\m_surat;
 use PDF;
 use Alert;
 use File;
@@ -20,7 +21,10 @@ class c_letter extends Controller
     public function index()
     {
         $data = m_kios::paginate(10);
-        return view('admin/pembuatan-surat', compact('data'));
+        $user =  Auth::user();
+        $spjb = m_surat::where('surat', '=' ,'spjb')->get();
+        $penunjukan = m_surat::where('surat', '=' ,'penunjukan')->get();
+        return view('admin/pembuatan-surat', compact('data','user' , 'spjb' , 'penunjukan'));
     }
 
     public function create()
@@ -121,6 +125,10 @@ class c_letter extends Controller
         $request->validate([
             'tanggal' => 'required',
         ]);
+        $data = m_surat::find($request['id_surat']);
+        $data->user = $request['user'];
+        $data->cetak += 1;
+        $data->save();
         $hari = self::hari(strtotime($request['tanggal']));
         $tgl_angka = explode('-' , $request['tanggal']);
         $tgl = date("d-m-Y", strtotime($request['tanggal']));
@@ -144,6 +152,10 @@ class c_letter extends Controller
         $request->validate([
             'tanggal' => 'required',
         ]);
+        $data = m_surat::find($request['id_surat']);
+        $data->user = $request['user'];
+        $data->cetak += 1;
+        $data->save();
         $tgl_angka = explode('-' , $request['tanggal']);
         $tgl = date("d-m-Y", strtotime($request['tanggal']));
         $tanggal = explode('-' , self::tgl_indo($request['tanggal'])) ;
@@ -157,6 +169,7 @@ class c_letter extends Controller
         if (File::exists($file_path)) {
             File::delete($file_path);
         }
+        
         return  $oMerger->save("Surat-Pertanggung-Jawaban.pdf", "download");
     }
 

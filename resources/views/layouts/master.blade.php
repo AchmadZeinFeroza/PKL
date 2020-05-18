@@ -420,14 +420,12 @@
                                     Dashboard
                                 </a>
                             </li>
-                            @if(auth()->user()->role == "1")
                             <li>
                                 <a href="{{ route('user-admin') }}">
                                     <i class="metismenu-icon pe-7s-user"></i>
                                     Daftar Admin
                                 </a>
                             </li>
-                            @endif
                             <li>
                                 <a href="#">
                                     <i class="metismenu-icon pe-7s-users"></i>

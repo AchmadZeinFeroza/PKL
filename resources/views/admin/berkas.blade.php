@@ -2,22 +2,8 @@
 
 @section('content')
 @include('sweetalert::alert')
-<div class="app-main__inner">
-    <div class="app-page-title">
-        <div class="page-title-wrapper">
-            <div class="page-title-heading">
-                <div class="page-title-icon">
-                    <i class="pe-7s-culture icon-gradient bg-mean-fruit">
-                    </i>
-                </div>
-                <div>Berkas
-                    <div class="page-title-subheading">Cabang Jember
-                    </div>
-                </div>
-            </div>
-         </div>
-    </div>
-    <div class="col-md-12">
+<div class="app-main__inner" >
+    <div class="col-md-12" >
         <div class="main-card mb-3 card">
             <div class="card-body">
                 <div class="search-wrapper mb-3">
@@ -28,20 +14,23 @@
                     <button class="close"></button>
                 </div>
                 <ul class="list-group">
-                    <div class="table-wrapper-scroll-y my-custom-scrollbar" id="content">
+                    <div class="table-wrapper-scroll-y " id="content">
                     @foreach ($files as $berkas)
-                    <li class="list-group-item mb-2">
-                        <h5 class="list-group-item-heading">{{$berkas->getFileName()}}</h5>
-                        <p class="list-group-item-text">{{$berkas->getSize() / 1000}} Kb</p>
-                        <a href="{{basename($berkas->getPath()).'/'.$berkas->getFileName()}}" class="btn btn-primary" download> Download </a>
-                        <a href="{{route('file.show' , $berkas->getFileName())}}" class="btn btn-danger"> Delete</a>
-
+                    <li class="list-group-item mb-2 p-1">
+                        <div class="btn-group col-md-12 text-right" role="group">
+                        <h5 class="list-group-item-heading col-md-2 p-0" style="font-size: 70%;">{{$berkas->getFileName()}}</h5>
+                        <p class="list-group-item-text col-md-1 " style="font-size: 60%;">{{$berkas->getSize() / 1000}} Kb</p>
+                        <div class="offset-md-7 ">
+                            <a href="{{basename($berkas->getPath()).'/'.$berkas->getFileName()}}" class="btn btn-sm btn-primary" download> Download </a>
+                            <a href="{{route('file.show' , $berkas->getFileName())}}" class="btn btn-sm btn-danger"> Delete</a>
+                        </div>
+                        </div>
                     </li>
                     @endforeach
                     </div>
                 </ul>
-                <div class="d-flex justify-content-center">
-                    <button type="button" class="btn btn-success mt-3 " data-toggle="modal" data-target="#exampleModal">
+                <div class="d-flex justify-content-start">
+                    <button type="button" class="btn btn-sm btn-success mt-3 " data-toggle="modal" data-target="#exampleModal">
                         Tambah
                     </button>
                     
@@ -60,7 +49,7 @@
     </div>
   </form>
 
-   --}}
+--}}
 @endsection
 <div  class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">

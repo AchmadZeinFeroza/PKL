@@ -43,7 +43,7 @@
                             <th>No Telpon</th>
                             <th>Kode Pengecer</th>
                             <th>No SPJB</th>
-                            @if(auth()->user()->role == "1")
+                            @if(auth()->user()->role == "1" || auth()->user()->role == "3")
                             <th>Action</th>
                             @endif
                         </tr>
@@ -59,7 +59,7 @@
                             <td>{{$kios->no_telpon}}</td>
                             <td>{{$kios->kode}}</td>
                             <td>{{$kios->spjb}}</td>
-                            @if(auth()->user()->role == "1" || auth()->user()->role == "2")
+                            @if(auth()->user()->role == "1" || auth()->user()->role == "3")
                             <td>
                                 <div class="form-inline">
                                     <form action="{{ route('hapus' , $kios->id_kios) }}" class="mr-2" method="POST">

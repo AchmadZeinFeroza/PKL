@@ -16,7 +16,7 @@ class Kios extends Seeder
             'alamat' => 'Dusun Bringin Sari Desa Jati Mulyo Kecamatan Jenggawah',
             'pemilik' => 'Sukisman',
             'kecamatan' => 1,
-            'desa' => 'Klompangan',
+            'desa' => 2,
             'no_telpon' => '081249033317',
             'kode' => 'RT000002983',
             'spjb' => '023',

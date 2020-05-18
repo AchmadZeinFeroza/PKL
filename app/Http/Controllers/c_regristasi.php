@@ -7,6 +7,7 @@ use App\m_regristasi;
 use App\m_kios;
 use App\m_penolakan;
 use App\m_web;
+use App\m_desa;
 use App\User;
 use Carbon\Carbon;
 use Alert;
@@ -29,6 +30,11 @@ class c_regristasi extends Controller
     public function regristasi()
     {
         return view('regristasi');
+    }
+    public function kecamatan($kecamatan)
+    {
+        $data = m_desa::where('kecamatan' , $kecamatan)->get();
+        return response()->json($data);
     }
 
     public function getktp($id)
@@ -55,7 +61,7 @@ class c_regristasi extends Controller
             'nama_kios' => 'required',
             'pemilik' => 'required',
             'email' => 'required',
-            'alamat' => 'required',
+            'alamat' => 'required|min:15',
             'desa' => 'required',
             'kecamatan' => 'required',
             'no_telpon' => 'required',

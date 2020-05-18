@@ -13,7 +13,7 @@ class m_kios extends Model
     ];
 
     public function daerah(){
-        return $this->belongsTo('App\m_kecamatan', 'kecamatan' ,'id_kecamatan');
+        return $this->belongsTo('App\m_desa', 'desa' ,'id_desa');
     }
     
 }

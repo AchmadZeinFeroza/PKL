@@ -15,4 +15,7 @@ class m_regristasi extends Model
     public function daerah(){
         return $this->belongsTo('App\m_kecamatan', 'kecamatan' ,'id_kecamatan');
     }
+    public function tempat(){
+        return $this->belongsTo('App\m_desa', 'desa' ,'id_desa');
+    }
 }

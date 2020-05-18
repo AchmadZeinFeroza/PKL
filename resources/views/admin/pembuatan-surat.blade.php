@@ -46,6 +46,7 @@
                       <tr>
                         <th scope="col">No SPJB</th>
                         <th scope="col">Nama Kios</th>
+                        <th scope="col">Almat</th>
                         <th scope="col">SPJB</th>
                         <th scope="col">Penunjukan</th>
                       </tr>
@@ -55,23 +56,40 @@
                     <tr>
                       <td scope="row">{{$kios->spjb}}</td>
                       <td>{{$kios->nama_kios}}</td>
+                      <td>{{$kios->alamat}}</td>
                       <td>
                         <div class="btn-group">
                             <form action="{{route('letter.update' , $kios->id_kios)}}" method="post">
                                 {{csrf_field()}}{{method_field('PATCH')}}
                                 <input type="date" class="form-control" name="tanggal">
+                                <input type="hidden" name="user" value="{{$user->name}}">
+                                <input type="hidden" name="id_surat" value="1">
                                 <button type="submit" class="btn btn-rounded btn-secondary"> Cetak</button>
                             </form>
-                      </div>
+                          </div>
+                          <br>
+                        @foreach ($spjb as $s)
+                        @if($s->cetak > 0)
+                        <small style="color:red;">dicetak: {{$s->cetak}} kali, terakhir : {{$user->name}}  {{$s->updated_at}}</small>
+                        @endif
+                        @endforeach
                     </td>
                     <td>
-                        <div class="btn-group">
-                            <form action="{{route('penunjukan' , $kios->id_kios)}}" method="post">
-                                {{csrf_field()}}{{method_field('PATCH')}}
-                                <input type="date" class="form-control" name="tanggal">
-                                <button type="submit" class="btn btn-rounded btn-secondary"> Cetak</button>
-                            </form>
-                        </div>
+                      <div class="btn-group">
+                        <form action="{{route('penunjukan' , $kios->id_kios)}}" method="post">
+                          {{csrf_field()}}{{method_field('PATCH')}}
+                          <input type="hidden" name="user" value="{{$user->name}}">
+                          <input type="hidden" name="id_surat" value="2">
+                          <input type="date" class="form-control" name="tanggal">
+                          <button type="submit" class="btn btn-rounded btn-secondary"> Cetak</button>
+                        </form>
+                      </div>
+                      <br>
+                      @foreach ($penunjukan as $p)
+                      @if($p->cetak > 0)
+                      <small style="color:red;">dicetak: {{$p->cetak}} kali, terakhir : {{$user->name}} {{$p->updated_at}}</small>
+                      @endif
+                      @endforeach
                     </td>
                     </tr>
                     @endforeach
