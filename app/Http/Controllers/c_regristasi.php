@@ -65,9 +65,9 @@ class c_regristasi extends Controller
             'desa' => 'required',
             'kecamatan' => 'required',
             'no_telpon' => 'required',
-            'ktp' => 'required|image|mimes:jpeg,png,gif,webp,pdf',
-            'tdp' => 'required|image|mimes:jpeg,png,gif,webp,pdf',
-            'siup' => 'required|image|mimes:jpeg,png,gif,webp,pdf'
+            'ktp' => 'required|image|mimes:jpeg,png,gif,webp,pdf|file|size:5000',
+            'tdp' => 'required|image|mimes:jpeg,png,gif,webp,pdf|file|size:5000',
+            'siup' => 'required|image|mimes:jpeg,png,gif,webp,pdf|file|size:5000'
         ]);
         $data->nama_kios = $request['nama_kios'];
         $data->pemilik = $request['pemilik'];

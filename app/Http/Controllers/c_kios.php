@@ -7,6 +7,7 @@ use App\Mail\EmailDisetujui;
 use App\m_kios;
 use App\m_regristasi;
 use App\m_penolakan;
+use App\m_desa;
 use Illuminate\Http\Request;
 use DataTables; 
 use App\Imports\data_kios;
@@ -204,6 +205,6 @@ class c_kios extends Controller
     public function download(){
         $data = m_kios::get();
         $pdf = PDF::loadview('admin/download-kios',compact('data'));
-    	return $pdf->download('laporan-penjualan-pdf.pdf');
+    	return $pdf->download('Daftar Kios.pdf');
     }
 }

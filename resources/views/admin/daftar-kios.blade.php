@@ -54,7 +54,7 @@
                             <td>{{$kios->nama_kios}}</td>
                             <td>{{$kios->pemilik}}</td>
                             <td>{{$kios->alamat}}</td>
-                            <td>{{$kios->desa}}</td>
+                            <td>{{$kios->tempat->desa}}</td>
                             <td>{{$kios->daerah->kecamatan}}</td>
                             <td>{{$kios->no_telpon}}</td>
                             <td>{{$kios->kode}}</td>

@@ -23,8 +23,14 @@ class CreateKios extends Migration
             $table->unsignedBigInteger('desa');
             $table->foreign('desa')->references('id_desa')->on('desa')->onUpdate('cascade')->onDelete('cascade');
             $table->string('no_telpon');
-            $table->string('kode');
-            $table->string('spjb');
+            $table->string('kode')->nullable();
+            $table->string('spjb')->nullable();
+            $table->Integer('cetak_spjb')->nullable();
+            $table->string('tanggal_spjb')->nullable();
+            $table->string('user_spjb')->nullable();
+            $table->Integer('cetak_penunjukan')->nullable();
+            $table->string('tanggal_penunjukan')->nullable();
+            $table->string('user_penunjukan')->nullable();
             $table->timestamps();
         });
     }

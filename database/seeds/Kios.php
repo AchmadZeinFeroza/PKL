@@ -20,6 +20,12 @@ class Kios extends Seeder
             'no_telpon' => '081249033317',
             'kode' => 'RT000002983',
             'spjb' => '023',
+            'cetak_spjb' => 0,
+            'tanggal_spjb' => null,
+            'user_spjb' => null,
+            'cetak_penunjukan' => 0,
+            'tanggal_penunjukan' => null,
+            'user_penunjukan' => null,
             ]);
     }
 }

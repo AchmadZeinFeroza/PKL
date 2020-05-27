@@ -11,7 +11,7 @@
                 <i class="pe-7s-culture icon-gradient bg-mean-fruit">
                 </i>
             </div>
-            <div>Regritrasi Kios Baru
+            <div>Registrasi Kios Baru
                 <div class="page-title-subheading">Cabang Jember
                 </div>
             </div>
@@ -19,7 +19,7 @@
      </div>
 </div>
 <div class="main-card mb-3 card">
-    <div class="card-header"><i class="header-icon lnr-license icon-gradient bg-plum-plate"> </i>Regristasi Kios Baru
+    <div class="card-header"><i class="header-icon lnr-license icon-gradient bg-plum-plate"> </i>Registrasi Kios Baru
         <div class="btn-actions-pane-right">
             <div class="nav">
                 <a data-toggle="tab" href="#tab-eg2-0" class="btn-pill btn-wide active btn btn-outline-alternate btn-sm">Verifikasi</a>

@@ -12,8 +12,12 @@ class m_kios extends Model
         'nama_kios','pemilik','alamat','kecamatan','desa','no_telpon' ,'kode' , 'spjb'
     ];
 
-    public function daerah(){
+    public function tempat(){
         return $this->belongsTo('App\m_desa', 'desa' ,'id_desa');
     }
+    public function daerah(){
+        return $this->belongsTo('App\m_kecamatan', 'kecamatan' ,'id_kecamatan');
+    }
+    
     
 }

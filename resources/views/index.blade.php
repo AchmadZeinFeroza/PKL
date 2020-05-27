@@ -232,7 +232,7 @@
                   <i class="now-ui-icons users_circle-08"></i>
                 </span>
               </div>
-              <input type="text" class="form-control" placeholder="Nama" name="nama">
+              <input type="text" class="form-control" placeholder="Nama" name="nama" required>
             </div>
             <div class="input-group input-lg">
               <div class="input-group-prepend">
@@ -240,10 +240,10 @@
                   <i class="now-ui-icons ui-1_email-85"></i>
                 </span>
               </div>
-              <input type="text" class="form-control" placeholder="Email" name="email">
+              <input type="email" class="form-control" placeholder="Email" name="email" required>
             </div>
             <div class="textarea-container">
-              <textarea class="form-control" name="pesan" rows="4" cols="80" placeholder="Pertanyaan Anda..."></textarea>
+              <textarea class="form-control" name="pesan" rows="4" cols="80" placeholder="Pertanyaan Anda..." required></textarea>
             </div>
             <div class="send-button">
               <button type="submit" class="btn btn-primary btn-round btn-block btn-lg">Kirim Pesan</button>

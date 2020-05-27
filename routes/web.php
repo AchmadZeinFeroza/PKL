@@ -32,6 +32,7 @@ Route::group(["middleware" => ["auth","checkRole: 1,2,3"]] , function(){
     Route::post('/kios/tambah' , 'c_kios@tambah')->name('tambah-kios');
     Route::get('user' , 'c_user@index')->name('user-admin');
     Route::post('user/{id}', 'c_user@showdata');
+    Route::match(['post','patch'],'user/ubah/{id}' , 'c_user@update');
     Route::delete('/pesan/hapus/{id}' , 'c_pesan@destroy')->name('hapus-pesan');
     Route::group(["middleware" => ["auth", "checkRole:1,3"]] , function(){
         Route::get('/web' , 'c_web@web')->name('pengelolaan-web');
@@ -46,7 +47,6 @@ Route::group(["middleware" => ["auth", "checkRole:1"]] , function(){
     Route::post('tambah' , 'c_user@store')->name('tambah-admin');
     Route::delete('user/hapus/{id}' , 'c_user@destroy')->name('hapus-admin');
     Route::post('kios/import' , 'c_kios@import')->name('import.kios');
-    Route::match(['post','patch'],'user/ubah/{id}' , 'c_user@update');
 });
 
 //Batas admin

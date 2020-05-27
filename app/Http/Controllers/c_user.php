@@ -29,9 +29,9 @@ class c_user extends Controller
         $profil->email = $request['email'];
         $profil->alamat = $request['alamat'];
         $profil->nik = $request['nik'];
+        $profil->password = Hash::make($request['password']);
         $profil->facebook = $request['facebook'];
         $profil->wa = $request['wa'];
-        $profil->password = Hash::make($request['password']);
         if($request->hasFile('avatar')){
             $request->file('avatar')->move('profil/', $request->file('avatar')->getClientOriginalName());
             $profil->avatar = $request->file('avatar')->getClientOriginalName();
@@ -42,7 +42,7 @@ class c_user extends Controller
         $profil->save();
         Alert::success('Data User Berhasil Di Tambah', 'Success');
         $data = User::get();
-        return redirect('user');
+        return redirect('user')->with(['success' => 'Pesan Berhasil']);
     }
 
     public function showdata($id)
@@ -61,13 +61,14 @@ class c_user extends Controller
             'nik' => 'numeric|required|digits:16',
             'wa' => 'nullable|numeric|digits_between:10,13',
             'avatar' => 'nullable|image|mimes:jpeg,png,gif,webp',
-            'facebook' => 'nullable|active_url'
+            'facebook' => 'nullable'
         ]);
         $data->role = $request['role'];
         $data->name = $request['name'];
         $data->email = $request['email'];
         $data->alamat = $request['alamat'];
         $data->nik = $request['nik'];
+        $data->password = bcrypt($request['password']);
         $data->facebook = $request['facebook'];
         $data->wa = $request['wa'];
         $data->password = Hash::make($request['password']);

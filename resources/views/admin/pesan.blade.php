@@ -79,7 +79,7 @@
   </script>
   <script>
     $('.pesan').click(function(){
-      $(this).find('.badge-dark').remove();
+      $(this).find('.badge-dark').detach();
     });
   </script>
   @endsection

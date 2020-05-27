@@ -53,6 +53,11 @@
                                 Hapus
                             </button>
                             @endif
+                            @if(auth()->user()->id == $user->id)
+                                @if ($message = Session::get('success'))
+                                <strong>{{ $message }}</strong>
+                                @endif
+                            @endif
                         </td>
 
                     </tr>
@@ -119,7 +124,7 @@
                     </div>
                     <div class="position-relative form-group">
                         <label for="password">Password</label>
-                        <input name="password" id="password" placeholder="Masukkan Password" type="password" class="form-control">
+                        <input name="password" placeholder="Masukkan Password" type="password" class="form-control">
                     </div>
                     <div class="position-relative form-group">
                         <label for="alamat">Alamat</label>
@@ -212,11 +217,18 @@
                                   <input type="text" name="email" id="email" class="form-control-plaintext text-left data-email" value="">
                                 </div>
                             </div>
-                            <div class="form-group row mx-auto ">
+                            <div class="form-group row mx-auto password">
                                 <label for="password" class="col-sm-4 col-form-label text-right">Password</label>
                                 <div class="col-sm-8">
-                                  <input type="password" name="password" id="password" class="form-control-plaintext text-left data-password" value="">
+                                  <input type="password" name="password"  class="form-control-plaintext text-left data-password" id="password">
                                 </div>
+                            </div>
+                            <div class="form-group row mx-auto password">
+                                <label for="password" class="col-sm-4 col-form-label text-right">Confirm Password</label>
+                                <div class="col-sm-8">
+                                  <input type="password" class="form-control-plaintext text-left"  id="confirm_password">
+                                </div>
+                                <small id="message"></small>
                             </div>
                             <div class="form-group row mx-auto ">
                                 <label for="nik" class="col-sm-4 col-form-label text-right">NIK</label>
@@ -301,7 +313,7 @@
 
 
   <script>
-
+ 
     $('.button-detail').click(function () {
       var id = $(this).data('id');
       var urldata = "{{url('user')}}" + '/' + id;
@@ -326,13 +338,14 @@
           }
           if(id !== {{auth()->user()->id}}){
               $('#ubah').hide();
+              $('.password').hide();
           }else{
             $('#ubah').show();
+            $('.password').show();
           }
           $('.data-name').val(data.name);
           $('.data-id').val(data.id);
           $('.data-email').val(data.email);
-          $('.data-password').val(data.password);
           $('.data-role').html(data.role);
           $('.data-alamat').val(data.alamat);
           $('.data-facebook').val(data.facebook);
@@ -345,10 +358,20 @@
         }
       }).done(function (data) {
         console.log('suksess');
-        console.log(data.password);
       });
     });
 
   </script>
+
+
+ <script>
+$('#password , #confirm_password').on('keyup', function () {
+  if ($('#password').val() === $('#confirm_password').val()) {
+    $('#message').html('Sudah Cocok').css('color', 'green');
+  }else 
+    $('#message').html('Belum Cocok').css('color', 'red');
+    console.log($('#password').val());
+});
+ </script>
 
 @endsection
