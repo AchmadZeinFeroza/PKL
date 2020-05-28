@@ -112,11 +112,13 @@
                 </tbody>
             </table>
         </div>
+        @if(auth()->user()->role == "1")
         <div class="col-md-6 mx-auto  d-flex justify-content-center mb-5">
             <button type="button" class="btn btn-primary p-3 px-5" data-toggle="modal" data-target="#exampleModal">
                 Tambah
             </button>
         </div>
+        @endif
     </div>
 </div>
 @endsection
@@ -412,8 +414,11 @@
 
 
  <script>
-$('#confirm_password').on('keyup', function () {
-  if ($('#password').val() === $('#confirm_password').val()) {
+$('#password ,#confirm_password').on('keyup', function () {
+    var value = $('#password').val();
+  if ( value.length <= 8) {
+    $('#message').html('Minimal 8 Karakter').css('color', 'red');
+  }else if( $('#password').val() === $('#confirm_password').val()){
     $('#message').html('Sudah Cocok').css('color', 'green');
   }else 
     $('#message').html('Belum Cocok').css('color', 'red');

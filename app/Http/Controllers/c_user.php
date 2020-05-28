@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
+use DB;
 use App\User;
 use Hash;
 use Alert;
@@ -102,6 +103,9 @@ class c_user extends Controller
         
         $data = User::find($id);
         $data->delete();
+        DB::statement("SET @count = 0;");
+        DB::statement("UPDATE `users` SET `id` = @count:= @count + 1;");
+        DB::statement("ALTER TABLE `users` AUTO_INCREMENT = 1;");
         Alert::success('Data User Berhasil Di Hapus', 'Success');
         $data = User::get();
         return redirect('user');

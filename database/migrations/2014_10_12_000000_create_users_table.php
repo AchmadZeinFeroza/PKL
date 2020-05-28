@@ -14,6 +14,7 @@ class CreateUsersTable extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
+           
             $table->bigIncrements('id');
             $table->unsignedBigInteger('role');
             $table->foreign('role')->references('id_posisi')->on('posisi')->onUpdate('cascade')->onDelete('cascade');
