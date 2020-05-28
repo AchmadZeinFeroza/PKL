@@ -22,7 +22,8 @@ class c_user extends Controller
             'alamat' => 'required',
             'nik' => 'numeric|required|digits:16',
             'wa' => 'nullable|numeric|digits_between:10,13',  
-            'avatar' => 'nullable|image|mimes:jpeg,png,gif,webp'
+            'avatar' => 'nullable|image|mimes:jpeg,png,gif,webp',
+            'password' => 'required|min:8|confirmed'
         ]);
         $profil->role = $request['role'];
         $profil->name = $request['name'];
@@ -32,6 +33,7 @@ class c_user extends Controller
         $profil->password = Hash::make($request['password']);
         $profil->facebook = $request['facebook'];
         $profil->wa = $request['wa'];
+        $profil->notif = "Harap Password untuk diganti !";
         if($request->hasFile('avatar')){
             $request->file('avatar')->move('profil/', $request->file('avatar')->getClientOriginalName());
             $profil->avatar = $request->file('avatar')->getClientOriginalName();
@@ -42,7 +44,7 @@ class c_user extends Controller
         $profil->save();
         Alert::success('Data User Berhasil Di Tambah', 'Success');
         $data = User::get();
-        return redirect('user')->with(['success' => 'Pesan Berhasil']);
+        return redirect('user')->with(['success' => 'Pesan Berhasil'] );
     }
 
     public function showdata($id)
@@ -68,7 +70,6 @@ class c_user extends Controller
         $data->email = $request['email'];
         $data->alamat = $request['alamat'];
         $data->nik = $request['nik'];
-        $data->password = bcrypt($request['password']);
         $data->facebook = $request['facebook'];
         $data->wa = $request['wa'];
         $data->password = Hash::make($request['password']);
@@ -83,8 +84,22 @@ class c_user extends Controller
 
     }
 
+    public function password(Request $request , $id){
+        $data = User::find($id);
+        $request->validate([
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ]);
+        $data->password = Hash::make($request['password']);
+        $data->notif = null;
+        $data->save();
+        Alert::success('Password Berhasil Di Ubah', 'Success');
+        $data = User::get();
+        return redirect('user');
+    }
+
     public function destroy($id)
     {
+        
         $data = User::find($id);
         $data->delete();
         Alert::success('Data User Berhasil Di Hapus', 'Success');

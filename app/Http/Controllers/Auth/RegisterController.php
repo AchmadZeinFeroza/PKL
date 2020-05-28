@@ -29,7 +29,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = '/dashboard';
 
     /**
      * Create a new controller instance.
@@ -38,8 +38,9 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        $this->middleware('auth');
     }
+
 
     /**
      * Get a validator for an incoming registration request.
@@ -78,6 +79,6 @@ class RegisterController extends Controller
             'facebook' => $data['facebook'],
             'wa' => $data['wa'],
             'avatar' => $data['avatar']
-            ]);
+        ]);
     }
 }

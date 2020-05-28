@@ -32,6 +32,7 @@ Route::group(["middleware" => ["auth","checkRole: 1,2,3"]] , function(){
     Route::post('/kios/tambah' , 'c_kios@tambah')->name('tambah-kios');
     Route::get('user' , 'c_user@index')->name('user-admin');
     Route::post('user/{id}', 'c_user@showdata');
+    Route::match(['post','patch'],'user/ubah-passwword/{id}' , 'c_user@password')->name('ubah-password');
     Route::match(['post','patch'],'user/ubah/{id}' , 'c_user@update');
     Route::delete('/pesan/hapus/{id}' , 'c_pesan@destroy')->name('hapus-pesan');
     Route::group(["middleware" => ["auth", "checkRole:1,3"]] , function(){

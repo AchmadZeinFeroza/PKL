@@ -45,7 +45,11 @@
                             <p>{{ $user->posisi->posisi }}</p>
                             <button  type="button" class="mb-2 mr-2 btn btn-alternate button-detail"
                             data-toggle="modal" data-target="#detail-profil"  data-id='{{ $user->id}}'>
-                                Detail
+                            @if(auth()->user()->id == $user->id)
+                            Ubah
+                              @else
+                            Detail
+                             @endif
                             </button>
                             @if(auth()->user()->id == "1")
                             <button  type="button" class="mb-2 mr-2 btn btn-danger"
@@ -54,10 +58,15 @@
                             </button>
                             @endif
                             @if(auth()->user()->id == $user->id)
-                                @if ($message = Session::get('success'))
-                                <strong>{{ $message }}</strong>
-                                @endif
-                            @endif
+                             <button  type="button" class="mb-2 mr-2 btn btn-warning"
+                            data-toggle="modal" data-target="#ubah-profil{{ $user->id }}">
+                                Ganti Password
+                            </button>
+                             @endif
+                             @if(auth()->user()->notif !== null)
+                             <br>
+                                 <small style="color: red;">{{$user->notif}}</small>
+                              @endif
                         </td>
 
                     </tr>
@@ -69,7 +78,11 @@
                             <p>{{ $user->posisi->posisi }}</p>
                             <button  type="button" class="mb-2 mr-2 btn btn-alternate button-detail"
                             data-toggle="modal" data-target="#detail-profil"  data-id='{{ $user->id}}' >
+                            @if(auth()->user()->id == $user->id)
+                                Ubah
+                            @else
                                 Detail
+                            @endif
                             </button>
                             @if(auth()->user()->id == "1")
                             <button  type="button" class="mb-2 mr-2 btn btn-danger"
@@ -77,7 +90,18 @@
                                 Hapus
                             </button>
                             @endif
+                            @if(auth()->user()->id == $user->id)
+                            <button  type="button" class="mb-2 mr-2 btn btn-warning"
+                           data-toggle="modal" data-target="#ubah-profil{{ $user->id }}">
+                               Ganti Password
+                           </button>
+                           @if(auth()->user()->notif !== null)
+                           <br><small style="color: red;">{{$user->notif}}</small>
+                        @endif
+                            @endif
                         </td>
+                       
+                        
                         <td class=" px-py-5 ml-5 d-flex justify-content-start "><img
                                 src="{{ $user->getAvatar()  }}" class="rounded-circle" width="150px">
                         </td>
@@ -124,7 +148,12 @@
                     </div>
                     <div class="position-relative form-group">
                         <label for="password">Password</label>
-                        <input name="password" placeholder="Masukkan Password" type="password" class="form-control">
+                        <input name="password" placeholder="Masukkan Password" type="password" class="form-control" id="passwords">
+                    </div>
+                    <div class="position-relative form-group">
+                        <label for="password">Konfirmasi Password</label>
+                        <input name="password_confirmation" placeholder="Masukkan Password" type="password" class="form-control"  id="confirm_passwords">
+                        <small id="messages"></small>
                     </div>
                     <div class="position-relative form-group">
                         <label for="alamat">Alamat</label>
@@ -217,19 +246,6 @@
                                   <input type="text" name="email" id="email" class="form-control-plaintext text-left data-email" value="">
                                 </div>
                             </div>
-                            <div class="form-group row mx-auto password">
-                                <label for="password" class="col-sm-4 col-form-label text-right">Password</label>
-                                <div class="col-sm-8">
-                                  <input type="password" name="password"  class="form-control-plaintext text-left data-password" id="password">
-                                </div>
-                            </div>
-                            <div class="form-group row mx-auto password">
-                                <label for="password" class="col-sm-4 col-form-label text-right">Confirm Password</label>
-                                <div class="col-sm-8">
-                                  <input type="password" class="form-control-plaintext text-left"  id="confirm_password">
-                                </div>
-                                <small id="message"></small>
-                            </div>
                             <div class="form-group row mx-auto ">
                                 <label for="nik" class="col-sm-4 col-form-label text-right">NIK</label>
                                 <div class="col-sm-8">
@@ -307,6 +323,37 @@
     </div>
 </div>
 </div>
+<div class="modal fade" id="ubah-profil{{ $pengguna->id }}" tabindex="-1" role="dialog"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Ubah Password</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="{{ route('ubah-password' , $pengguna->id)}}" method="POST">
+                    {{csrf_field()}}{{method_field('PATCH')}}
+                <div class="position-relative form-group">
+                    <label for="password">Password</label>
+                    <input name="password" placeholder="Masukkan Password" type="password" class="form-control" id="password">
+                </div>
+                <div class="position-relative form-group">
+                    <label for="password">Konfirmasi Password</label>
+                    <input name="password_confirmation" placeholder="Masukkan Password" type="password" class="form-control"  id="confirm_password">
+                    <small id="message"></small>
+                </div>
+            <div class="modal-footer">
+                    <button type="submit" class="btn btn-danger">Ubah</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
 @endforeach
 
 {{-- end modal hapus user --}}
@@ -365,12 +412,19 @@
 
 
  <script>
-$('#password , #confirm_password').on('keyup', function () {
+$('#confirm_password').on('keyup', function () {
   if ($('#password').val() === $('#confirm_password').val()) {
     $('#message').html('Sudah Cocok').css('color', 'green');
   }else 
     $('#message').html('Belum Cocok').css('color', 'red');
     console.log($('#password').val());
+});
+     $('#confirm_passwords').on('keyup', function () {
+  if ($('#passwords').val() === $('#confirm_passwords').val()) {
+    $('#messages').html('Sudah Cocok').css('color', 'green');
+  }else 
+    $('#messages').html('Belum Cocok').css('color', 'red');
+    console.log($('#passwords').val());
 });
  </script>
 
