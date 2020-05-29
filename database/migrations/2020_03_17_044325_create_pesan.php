@@ -18,6 +18,7 @@ class CreatePesan extends Migration
             $table->string('nama');
             $table->string('email');
             $table->text('pesan');
+            $table->string('aksi')->nullable();
             $table->timestamps();
         });
     }

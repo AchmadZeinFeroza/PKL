@@ -53,6 +53,10 @@ class c_pesan extends Controller
                 'pesan' => $request->pesan,
                 'email' => $request->email
         );
+        $id = $request['id_pesan'];
+        $pesan = m_pesan::find($id);
+        $pesan->aksi = "sudah dibalas";
+        $pesan->save();
         Mail::to($request->email)->send(new Email($data));
         Alert::success('Pesan Berhasil Dikirim', 'Success');
         return redirect('pesan');

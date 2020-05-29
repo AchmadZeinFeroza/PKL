@@ -22,7 +22,11 @@
       <ul class="list-group">
         @foreach ($data as $pesan)
         <li class="list-group-item p-3 pesan" data-toggle="modal" data-target="#exampleModalCenter{{$pesan->id_pesan}}">
-          <span class="badge badge-dark">Baru</span>
+          @if($pesan->aksi === null)
+            <br><small style="color: red;">Belum Dibalas</small>
+          @else
+           <br><small style="color: green;">Sudah Dibalas</small>
+          @endif
           <i class="fas fa-envelope text-info mx-5 "></i>{{$pesan->email}}<span
           class="d-flex justify-content-end"><small>{{$pesan->created_at}}</small> </span>
         </li>
@@ -49,6 +53,7 @@
             {{csrf_field()}}
             <input type="hidden" name="nama" value="{{$pesan->nama}}">
             <input type="hidden" name="email" value="{{$pesan->email}}">
+            <input type="hidden" name="id_pesan" value="{{$pesan->id_pesan}}">
             <div class="form-group">
               <label for="exampleFormControlTextarea1">Balas Pesan  :</label>
               <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="pesan"></textarea>
