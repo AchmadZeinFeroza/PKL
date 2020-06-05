@@ -123,7 +123,7 @@ class c_kios extends Controller
         $kios = array(
             'pemilik' => $regristasi->pemilik,
             'alamat' => $regristasi->alamat,
-            'alasan' => $regristasi['alasan']
+            'alasan' => $request['alasan']
         );
         Mail::to($regristasi->email)->send(new EmailDitolak($kios));
         $kios = new m_penolakan;

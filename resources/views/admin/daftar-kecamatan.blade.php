@@ -50,13 +50,11 @@
 @endsection
 
 @section('script')
-
     <script>
         $(".list-group-item").hover(function(){
             $(this).addClass('bg-secondary text-white');
             },function(){
                 $(this).removeClass('bg-secondary text-white');
         });
-
     </script>
 @endsection

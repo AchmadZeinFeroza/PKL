@@ -61,7 +61,7 @@
         type: 'areaspline'
     },
     title: {
-        text: 'Pengunjung Web dan Kios Baru'
+        text: 'Kios Baru'
     },
     legend: {
         layout: 'vertical',
@@ -107,10 +107,7 @@
             fillOpacity: 0.5
         }
     },
-    series: [{
-        name: 'Pengunjung Web',
-        data: [1, 3, 4, 3, 3, 5, 4]
-    }, {
+    series: [ {
         name: 'Kios Baru',
         data: [{{$senin}}, {{$selasa}}, {{$rabu}}, {{$kamis}}, {{$jumat}}, {{$sabtu}}, {{$minggu}}]
     }]

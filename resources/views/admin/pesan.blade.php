@@ -28,7 +28,7 @@
            <br><small style="color: green;">Sudah Dibalas</small>
           @endif
           <i class="fas fa-envelope text-info mx-5 "></i>{{$pesan->email}}<span
-          class="d-flex justify-content-end"><small>{{$pesan->created_at}}</small> </span>
+          class="d-flex justify-content-end"><small>{{$pesan->created_at->diffForHumans()}}</small> </span>
         </li>
         @endforeach
       </ul>

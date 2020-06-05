@@ -16,12 +16,21 @@
     <div class="container">
         <img src="{{ asset('img/favicon.png') }}" alt="">
     </div>
+    <p>Penolakan permohonan Calon Kios Baru PT Perusahaan Perdagangan Indoneisa Sub Cabang Jember</p>
+    <br>
     <p>Kepada Yth</p>
     <p>{{$kios['pemilik']}}</p>
     <p>{{$kios['alamat']}}</p>
     <br>
     <p>Dengan Hormat,</p>
     <br>
-    <p>Sebelumynya mohon maaf, permintaan anda untuk menjadi kios kami belum memnuhi kriteria,{{$kios['alasan']}} silahkan tanya pada form pertanyaan bila ada yang ingin ditanyakan</p>
+    <p>Mohon maaf kami sampaikan bahwa permohonan menjadi kios baru PT Perdagangan Indonesia Sub Cabang Jember telah ditolak</p>
+    <br>
+    <p>Adapun alasan penolakan ini adalah  :</p>
+    <p>{{$kios['alasan']}}</p>
+    <br>
+    <p>Silahkan mengajukan permohonan kembali.Terimakasih</p>
+    <br>
+    <p>PT Perusahaan Perdagangan Indonesia Sub Cabang Jember </p>
 </body>
 </html>
