@@ -457,7 +457,7 @@
                             @endif
                             <li>
                                 <a href="{{ route('letter.index') }}">
-                                    <i class="metismenu-icon pe-7s-users"></i>
+                                    <i class="metismenu-icon pe-7s-note2"></i>
                                     Pembuatan Surat
                                 </a>
                                
